@@ -1,0 +1,8 @@
+{
+  "name": "Tech Skyline It Solutions SkillForge AI: Dedicated Self-Learning Platform",
+  "description": "A comprehensive learning ecosystem for high-demand tech roles like AI/ML, Cloud Architecture, and DevOps, featuring interactive labs powered by Gemini and strategic Firebase architecture insights.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
