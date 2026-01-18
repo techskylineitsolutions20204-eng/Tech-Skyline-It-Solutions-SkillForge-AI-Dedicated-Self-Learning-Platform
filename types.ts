@@ -78,11 +78,13 @@ export interface FirebaseStrategy {
   docUrl: string;
 }
 
+export type ResourceCategory = 'AI_ASSISTANT' | 'INTERACTIVE_LAB' | 'SANDBOX' | 'TUTORIAL' | 'IDE' | 'RESEARCH';
+
 export interface ExternalResource {
   id: string;
   name: string;
   url: string;
   description: string;
-  category: 'AI_TOOL' | 'LEARNING' | 'RESEARCH' | 'IDE';
+  category: ResourceCategory;
   icon: string;
 }

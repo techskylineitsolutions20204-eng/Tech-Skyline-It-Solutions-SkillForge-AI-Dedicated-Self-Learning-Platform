@@ -2,11 +2,12 @@
 import { LearningModule, FirebaseStrategy, ExternalResource } from './types';
 
 export const EXTERNAL_RESOURCES: ExternalResource[] = [
+  // IDE & Core Tools
   {
     id: 'vscode',
-    name: 'VS Code',
+    name: 'VS Code + AI',
     url: 'https://code.visualstudio.com/',
-    description: 'The industry-standard extensible IDE for modern development.',
+    description: 'Industry-standard IDE with built-in AI Agent Mode and copilot features.',
     category: 'IDE',
     icon: 'fa-code'
   },
@@ -14,63 +15,127 @@ export const EXTERNAL_RESOURCES: ExternalResource[] = [
     id: 'google-assist',
     name: 'Google Code Assist',
     url: 'https://codeassist.google/',
-    description: 'AI-powered code completion and assistance by Google.',
-    category: 'AI_TOOL',
+    description: 'Enterprise AI assistant integrated into IDEs for code generation and debugging.',
+    category: 'AI_ASSISTANT',
     icon: 'fa-google'
+  },
+  
+  // AI Assistants & Generators
+  {
+    id: 'codeium',
+    name: 'Codeium',
+    url: 'https://codeium.com/',
+    description: 'Ultra-fast free AI code autocomplete and chat for 70+ languages.',
+    category: 'AI_ASSISTANT',
+    icon: 'fa-bolt'
   },
   {
     id: 'zzzcode',
-    name: 'ZZZCode',
+    name: 'ZZZ Code AI',
     url: 'https://zzzcode.ai/code-generator',
-    description: 'Instant AI code generation and debugging tools.',
-    category: 'AI_TOOL',
+    description: 'Free online form-based generator for logic snippets and unit tests.',
+    category: 'AI_ASSISTANT',
     icon: 'fa-microchip-ai'
+  },
+  {
+    id: 'workik',
+    name: 'Workik AI',
+    url: 'https://workik.com/ai-code-generator',
+    description: 'Prompt-to-code generator for full application structures and modules.',
+    category: 'AI_ASSISTANT',
+    icon: 'fa-wand-sparkles'
   },
   {
     id: 'deepai',
     name: 'DeepAI Code',
     url: 'https://deepai.org/chat/ai-code',
-    description: 'Natural language to code translation and chat.',
-    category: 'AI_TOOL',
-    icon: 'fa-brain'
+    description: 'Conversational code logic explainer and translator.',
+    category: 'AI_ASSISTANT',
+    icon: 'fa-brain-circuit'
   },
   {
     id: 'cline',
     name: 'Cline Bot',
     url: 'https://cline.bot/',
-    description: 'Autonomous AI coding agent for complex tasks.',
-    category: 'AI_TOOL',
+    description: 'Autonomous open-source AI coding agent for complex file manipulation.',
+    category: 'AI_ASSISTANT',
     icon: 'fa-robot'
   },
+
+  // Interactive Learning Platforms
   {
     id: 'fcc',
-    name: 'FreeCodeCamp',
+    name: 'freeCodeCamp',
     url: 'https://www.freecodecamp.org/',
-    description: 'World-renowned non-profit platform for learning to code.',
-    category: 'LEARNING',
+    description: 'Comprehensive curriculum for web dev, data science, and security.',
+    category: 'INTERACTIVE_LAB',
     icon: 'fa-fire-flame-curved'
   },
   {
     id: 'codecademy',
     name: 'Codecademy',
     url: 'https://www.codecademy.com/',
-    description: 'Interactive coding lessons across dozens of languages.',
-    category: 'LEARNING',
+    description: 'Pro-grade interactive lessons with in-browser code feedback.',
+    category: 'INTERACTIVE_LAB',
     icon: 'fa-keyboard'
   },
   {
     id: 'sololearn',
     name: 'SoloLearn',
     url: 'https://www.sololearn.com/en/',
-    description: 'Mobile-first learning environment for technical skills.',
-    category: 'LEARNING',
+    description: 'Mobile-first hands-on coding courses for 25+ technologies.',
+    category: 'INTERACTIVE_LAB',
     icon: 'fa-mobile-screen-button'
+  },
+  {
+    id: 'codechef',
+    name: 'CodeChef Learn',
+    url: 'https://www.codechef.com/',
+    description: 'Competitive programming and data structures mastery.',
+    category: 'INTERACTIVE_LAB',
+    icon: 'fa-hat-wizard'
+  },
+  {
+    id: 'codecombat',
+    name: 'CodeCombat',
+    url: 'https://codecombat.com/',
+    description: 'Gamified environment for learning core JS/Python logic through play.',
+    category: 'INTERACTIVE_LAB',
+    icon: 'fa-gamepad'
+  },
+
+  // Online Compilers & Sandboxes
+  {
+    id: 'playcode',
+    name: 'PlayCode JS',
+    url: 'https://playcode.io/',
+    description: 'High-performance JavaScript playground with live visualization.',
+    category: 'SANDBOX',
+    icon: 'fa-play'
+  },
+  {
+    id: 'edube',
+    name: 'Edube Interactive',
+    url: 'https://edube.org/',
+    description: 'Guided sandbox for Python, JS, and C++ certification prep.',
+    category: 'SANDBOX',
+    icon: 'fa-terminal'
+  },
+
+  // Tutorials & Research
+  {
+    id: 'learnpython',
+    name: 'LearnPython.org',
+    url: 'https://www.learnpython.org/',
+    description: 'Interactive tutorials specifically for Python and Data Science.',
+    category: 'TUTORIAL',
+    icon: 'fa-brands fa-python'
   },
   {
     id: 'arxiv',
     name: 'arXiv Research',
     url: 'https://arxiv.org/abs/1209.2166',
-    description: 'Access to open-access scholarly articles in AI and STEM.',
+    description: 'Elite research library for deep learning and AI paper mastery.',
     category: 'RESEARCH',
     icon: 'fa-book-open'
   }
@@ -195,123 +260,6 @@ export const LEARNING_PATHS: LearningModule[] = [
       { title: 'ETL/ELT Frameworks', details: 'dbt (data build tool), Airflow for orchestration, and modern ingestion tools.' },
       { title: 'Big Data Governance', details: 'Data quality, lineage, and catalogs (Atlan, Alation, Amundsen).' },
       { title: 'Advanced Visual Analytics', details: 'Real-time dashboards using Looker, Tableau, and custom D3.js apps.' }
-    ]
-  },
-  {
-    id: 'automation',
-    path: 'AUTOMATION',
-    title: 'Automation & Intelligent Ops',
-    roles: ['RPA Developer', 'Low-Code Architect', 'Process Engineer'],
-    skills: ['RPA', 'Low-code', 'Intelligent Operations', 'UiPath', 'Power Platform'],
-    outlook: 'Democratization of development via low-code and AI-led automation.',
-    icon: 'fa-microchip-ai',
-    color: 'text-orange-400',
-    learningUrl: 'https://www.uipath.com/learning/academy',
-    certifications: [
-      { level: 'Foundational', name: 'Microsoft Power Platform Fundamentals', url: 'https://learn.microsoft.com/en-us/credentials/certifications/power-platform-fundamentals/' },
-      { level: 'Intermediate', name: 'UiPath Certified RPA Associate', url: 'https://www.uipath.com/learning/certification' },
-      { level: 'Advanced', name: 'UiPath Advanced RPA Developer', url: 'https://www.uipath.com/learning/certification' },
-      { level: 'Advanced', name: 'Automation Anywhere Professional', url: 'https://university.automationanywhere.com/certification/' }
-    ],
-    roadmap: [
-      { title: 'Process Mapping & Mining', details: 'Analyzing business workflows to identify high-ROI automation targets.' },
-      { title: 'RPA Development', details: 'Building bots with UiPath or Blue Prism to automate legacy UI tasks.' },
-      { title: 'Low-Code Application Design', details: 'Microsoft Power Apps and OutSystems for rapid internal tool development.' },
-      { title: 'Intelligent Automation (IA)', details: 'Integrating AI/OCR and Document AI to handle unstructured data in workflows.' },
-      { title: 'Center of Excellence (CoE)', details: 'Governing and scaling automation across the entire enterprise.' }
-    ]
-  },
-  {
-    id: 'quantum',
-    path: 'QUANTUM',
-    title: 'Quantum Computing',
-    roles: ['Quantum Developer', 'Quantum Hardware Engineer', 'Algorithmist'],
-    skills: ['Qubits', 'Error Correction', 'Qiskit', 'Cirq', 'Quantum Algorithms'],
-    outlook: 'Specialized R&D frontier; transition from NISQ to Fault-tolerant systems.',
-    icon: 'fa-atom-simple',
-    color: 'text-indigo-400',
-    learningUrl: 'https://qiskit.org/learn',
-    certifications: [
-      { level: 'Foundational', name: 'Microsoft Azure Quantum Fundamentals', url: 'https://learn.microsoft.com/en-us/training/paths/quantum-computing-fundamentals/' },
-      { level: 'Intermediate', name: 'IBM Quantum Developer', url: 'https://www.ibm.com/training/certification/C0010300' },
-      { level: 'Advanced', name: 'MIT xPRO Quantum Computing', url: 'https://learn-xpro.mit.edu/quantum-computing' }
-    ],
-    roadmap: [
-      { title: 'Quantum Mechanics for Devs', details: 'Linear algebra, Hilbert spaces, and qubit state representation.' },
-      { title: 'Qubits & Gates', details: 'Superposition, entanglement, and universal gate sets (Hadamard, CNOT).' },
-      { title: 'Quantum Error Correction', details: 'Surface codes, logical qubits, and noise mitigation in the NISQ era.' },
-      { title: 'Quantum Algorithms', details: 'Shor’s, Grover’s, VQE (Variational Quantum Eigensolver), and QAOA.' },
-      { title: 'SDKs: Qiskit & Cirq', details: 'Programming real quantum hardware via IBM Quantum and Google Cirq.' }
-    ]
-  },
-  {
-    id: 'emerging',
-    path: 'EMERGING',
-    title: 'Emerging (XR/Web3/IoT)',
-    roles: ['Web3 Developer', 'AR/VR Architect', 'IoT Systems Lead'],
-    skills: ['Blockchain', 'AR/VR', 'IoT', 'Solidity', 'Unity', 'Edge AI', 'MQTT'],
-    outlook: 'Convergence of spatial computing, decentralized finance, and industrial IoT.',
-    icon: 'fa-vr-cardboard',
-    color: 'text-pink-400',
-    learningUrl: 'https://ethereum.org/en/developers/',
-    certifications: [
-      { level: 'Foundational', name: 'Unity Certified User', url: 'https://unity.com/learn/certification' },
-      { level: 'Intermediate', name: 'Certified Blockchain Developer', url: 'https://www.blockchain-council.org/certifications/certified-blockchain-developer/' },
-      { level: 'Advanced', name: 'Ethereum Developer Certification', url: 'https://consensys.net/academy/' },
-      { level: 'Advanced', name: 'AWS Certified IoT Specialty', url: 'https://aws.amazon.com/certification/certified-iot-specialty/' }
-    ],
-    roadmap: [
-      { title: 'Web3 & Smart Contracts', details: 'Solidity development, DApp architecture, and decentralized storage (IPFS).' },
-      { title: 'Immersive Tech (AR/VR)', details: 'Unity/Unreal Engine, 3D spatial UI, and Mixed Reality (MR) for Enterprise.' },
-      { title: 'IoT Ecosystems', details: 'Device management, MQTT protocols, and hardware security (TPM/HSM).' },
-      { title: 'Edge AI & Analytics', details: 'Running ML models on low-power devices with TensorFlow Lite or Edge Impulse.' },
-      { title: 'Digital Twins', details: 'Connecting IoT real-time data to 3D spatial models for simulation.' }
-    ]
-  },
-  {
-    id: 'ai-prod',
-    path: 'AI_PRODUCT',
-    title: 'AI Product & Management',
-    roles: ['AI Product Manager', 'Compliance Officer', 'AI Governance Lead'],
-    skills: ['Product Management', 'AI Compliance', 'AI Governance', 'Ethics', 'Strategy'],
-    outlook: 'Bridging the gap between AI capability and organizational ROI.',
-    icon: 'fa-briefcase',
-    color: 'text-amber-400',
-    learningUrl: 'https://www.productschool.com/',
-    certifications: [
-      { level: 'Foundational', name: 'Agile Certified Practitioner (PMI-ACP)', url: 'https://www.pmi.org/certifications/agile-acp' },
-      { level: 'Intermediate', name: 'AI Product Manager (DeepLearning.AI)', url: 'https://www.deeplearning.ai/courses/ai-product-management-specialization/' },
-      { level: 'Advanced', name: 'Certified Scrum Product Owner (CSPO)', url: 'https://www.scrumalliance.org/get-certified/product-owner-track/cspo' }
-    ],
-    roadmap: [
-      { title: 'AI Lifecycle Management', details: 'From problem framing to model performance auditing and iterative improvement.' },
-      { title: 'AI Governance & Ethics', details: 'Managing bias, explainability (XAI), and corporate AI safety guidelines.' },
-      { title: 'AI Compliance & Regulation', details: 'Navigating the EU AI Act, GDPR, and sector-specific AI regulations.' },
-      { title: 'Strategic Roadmap Design', details: 'Prioritizing AI features based on feasibility, cost, and business value.' },
-      { title: 'Stakeholder & Ethics Review', details: 'Building cross-functional review boards for responsible AI rollout.' }
-    ]
-  },
-  {
-    id: 'hardware',
-    path: 'HARDWARE',
-    title: 'Hardware & HPC',
-    roles: ['AI Chip Architect', 'HPC Engineer', 'FPGA Designer'],
-    skills: ['AI Chips', 'HPC', 'Parallel Compute', 'CUDA', 'ASIC', 'VLSI', 'Verilog'],
-    outlook: 'Hardware-software codesign is the key to scaling the next generation of AI.',
-    icon: 'fa-microchip',
-    color: 'text-zinc-400',
-    learningUrl: 'https://www.nvidia.com/en-us/training/',
-    certifications: [
-      { level: 'Foundational', name: 'NVIDIA DLI: Fundamentals of Accelerated Computing', url: 'https://www.nvidia.com/en-us/training/' },
-      { level: 'Intermediate', name: 'Intel HPC Certification', url: 'https://www.intel.com/content/www/us/en/developer/topic-technology/hpc/training.html' },
-      { level: 'Advanced', name: 'Cadence/Synopsys VLSI Training', url: 'https://www.cadence.com/en_US/home/training.html' }
-    ],
-    roadmap: [
-      { title: 'Digital Logic & VLSI', details: 'Gate-level design, timing analysis, and ASIC/FPGA workflows.' },
-      { title: 'Parallel Compute & CUDA', details: 'GPU architecture and optimizing C++/Python for massive parallelism.' },
-      { title: 'AI Chip Architectures', details: 'TPUs, NPUs, and custom silicon optimized for tensor operations.' },
-      { title: 'High-Performance Computing (HPC)', details: 'Cluster networking (InfiniBand), MPI, and distributed storage for research.' },
-      { title: 'Hardware-Software Codesign', details: 'Optimizing compiler stacks for custom hardware targets.' }
     ]
   }
 ];

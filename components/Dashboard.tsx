@@ -1,131 +1,151 @@
 
 import React from 'react';
-import { LEARNING_PATHS, EXTERNAL_RESOURCES } from '../constants';
+import { EXTERNAL_RESOURCES } from '../constants';
+import { ResourceCategory } from '../types';
 
 const Dashboard: React.FC = () => {
+  const getCategoryLabel = (cat: ResourceCategory) => {
+    switch(cat) {
+      case 'AI_ASSISTANT': return 'AI Coding Assistants';
+      case 'INTERACTIVE_LAB': return 'Interactive Coding Labs';
+      case 'SANDBOX': return 'In-Browser Sandboxes';
+      case 'TUTORIAL': return 'Guided Tutorials';
+      case 'IDE': return 'Professional IDEs';
+      case 'RESEARCH': return 'Academic & Research';
+      default: return 'Other Resources';
+    }
+  };
+
+  const categories: ResourceCategory[] = ['AI_ASSISTANT', 'INTERACTIVE_LAB', 'SANDBOX', 'IDE', 'TUTORIAL', 'RESEARCH'];
+
   return (
-    <div className="space-y-12 max-w-6xl mx-auto pb-20">
-      <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 p-8 rounded-3xl relative overflow-hidden shadow-2xl">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
-        <div className="relative z-10 space-y-4">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white">SkillForge <span className="text-blue-500">Command Center</span></h1>
-          <p className="text-zinc-400 text-lg max-w-2xl">
-            Empowering your journey to elite technical mastery. Access premium roadmaps, AI-driven labs, and industry-standard tooling.
+    <div className="space-y-12 max-w-7xl mx-auto pb-20">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 p-8 sm:p-12 rounded-[2.5rem] relative overflow-hidden shadow-2xl">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-purple-600/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div className="relative z-10 space-y-6 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-zinc-800/50 border border-zinc-700/50 rounded-full">
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">System Online: v2.5 Enterprise</span>
+          </div>
+          <h1 className="text-5xl font-black tracking-tight text-white leading-tight">
+            SkillForge <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Resource Hub</span>
+          </h1>
+          <p className="text-zinc-400 text-lg leading-relaxed">
+            Your centralized gateway to the elite tools and platforms defining the 2026 tech landscape. 
+            From AI-native code agents to immersive sandboxed environments.
           </p>
-          <div className="flex gap-4 pt-4">
-            <button className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold shadow-lg shadow-blue-600/20 transition-all flex items-center gap-2">
-              Continue Active Lab <i className="fa-solid fa-arrow-right text-xs"></i>
+          <div className="flex flex-wrap gap-4 pt-4">
+            <button className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black shadow-xl shadow-blue-600/20 transition-all flex items-center gap-3">
+              Resume Learning Path <i className="fa-solid fa-arrow-right text-xs"></i>
             </button>
-            <button className="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 rounded-xl font-bold transition-all border border-zinc-700">
-              Review Roadmap
+            <button className="px-8 py-3.5 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-100 rounded-2xl font-black transition-all border border-zinc-700 backdrop-blur-sm">
+              View Tooling Guide
             </button>
           </div>
         </div>
       </div>
 
+      {/* Stats QuickView */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl group hover:border-zinc-600 transition-all">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-500">
-              <i className="fa-solid fa-check-double"></i>
+        {[
+          { icon: 'fa-check-double', label: 'Modules Mastered', val: '12', sub: '+2 from last session', color: 'emerald' },
+          { icon: 'fa-terminal', label: 'Lab Practice', val: '48', sub: '120 hours total uptime', color: 'blue' },
+          { icon: 'fa-ranking-star', label: 'Talent Score', val: '2,450', sub: 'Top 15% in Distributed Systems', color: 'amber' }
+        ].map((stat, i) => (
+          <div key={i} className="bg-zinc-900/40 border border-zinc-800/50 p-7 rounded-3xl group hover:border-zinc-600 transition-all hover:shadow-xl hover:shadow-black/20">
+            <div className="flex items-center gap-4 mb-5">
+              <div className={`w-12 h-12 bg-${stat.color}-500/10 rounded-2xl flex items-center justify-center text-${stat.color}-500 shadow-inner`}>
+                <i className={`fa-solid ${stat.icon} text-lg`}></i>
+              </div>
+              <h3 className="font-bold text-zinc-300 tracking-tight">{stat.label}</h3>
             </div>
-            <h3 className="font-bold text-zinc-200">Modules Mastered</h3>
+            <p className="text-4xl font-black text-white">{stat.val}</p>
+            <p className="text-xs text-zinc-500 mt-2 font-medium">{stat.sub}</p>
           </div>
-          <p className="text-3xl font-black">12</p>
-          <p className="text-sm text-zinc-500 mt-1">+2 from last session</p>
-        </div>
-        <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl group hover:border-zinc-600 transition-all">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-500">
-              <i className="fa-solid fa-terminal"></i>
-            </div>
-            <h3 className="font-bold text-zinc-200">Lab Practice</h3>
-          </div>
-          <p className="text-3xl font-black">48</p>
-          <p className="text-sm text-zinc-500 mt-1">120 hours total uptime</p>
-        </div>
-        <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl group hover:border-zinc-600 transition-all">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center text-amber-500">
-              <i className="fa-solid fa-ranking-star"></i>
-            </div>
-            <h3 className="font-bold text-zinc-200">Talent Score</h3>
-          </div>
-          <p className="text-3xl font-black">2,450</p>
-          <p className="text-sm text-zinc-500 mt-1">Top 15% in Distributed Systems</p>
-        </div>
+        ))}
       </div>
 
-      {/* Recommended Elite Tooling & Resources */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-zinc-100 flex items-center gap-3">
-            <i className="fa-solid fa-toolbox text-blue-500"></i>
-            Elite Tooling & Ecosystem
-          </h2>
-          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">
-            Verified for 2026
-          </span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {EXTERNAL_RESOURCES.map((tool) => (
-            <a 
-              key={tool.id} 
-              href={tool.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-zinc-900/40 border border-zinc-800 p-5 rounded-2xl hover:border-blue-500/50 transition-all group flex items-start gap-4"
-            >
-              <div className="w-12 h-12 shrink-0 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:text-blue-400 transition-colors shadow-lg shadow-black/20">
-                <i className={`fa-solid ${tool.icon} text-lg`}></i>
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <h4 className="font-bold text-zinc-100 text-sm group-hover:text-white">{tool.name}</h4>
-                  <span className={`text-[8px] font-black uppercase tracking-tighter px-1.5 py-0.5 rounded ${
-                    tool.category === 'AI_TOOL' ? 'bg-purple-500/10 text-purple-400' :
-                    tool.category === 'LEARNING' ? 'bg-emerald-500/10 text-emerald-400' :
-                    tool.category === 'RESEARCH' ? 'bg-amber-500/10 text-amber-400' :
-                    'bg-blue-500/10 text-blue-400'
-                  }`}>
-                    {tool.category.replace('_', ' ')}
-                  </span>
+      {/* Categorized Ecosystem Resources */}
+      <div className="space-y-16">
+        {categories.map((cat) => {
+          const catResources = EXTERNAL_RESOURCES.filter(r => r.category === cat);
+          if (catResources.length === 0) return null;
+          
+          return (
+            <section key={cat} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="flex items-center justify-between border-b border-zinc-900 pb-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
+                  <h2 className="text-2xl font-black text-white tracking-tight">{getCategoryLabel(cat)}</h2>
                 </div>
-                <p className="text-[11px] text-zinc-500 leading-relaxed line-clamp-2">{tool.description}</p>
+                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-xl">
+                  {catResources.length} Resources
+                </span>
               </div>
-            </a>
-          ))}
-        </div>
-      </section>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                {catResources.map((tool) => (
+                  <a 
+                    key={tool.id} 
+                    href={tool.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex flex-col bg-zinc-900/40 border border-zinc-800/60 p-6 rounded-[2rem] hover:border-blue-500/50 hover:bg-zinc-900/60 transition-all group shadow-sm hover:shadow-blue-500/5"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:text-blue-400 transition-all shadow-lg shadow-black/20">
+                        <i className={`fa-solid ${tool.icon} text-xl`}></i>
+                      </div>
+                      <i className="fa-solid fa-up-right-from-square text-[10px] text-zinc-700 group-hover:text-blue-500 transition-colors"></i>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-black text-white text-base group-hover:text-blue-400 transition-colors">{tool.name}</h4>
+                      <p className="text-xs text-zinc-500 leading-relaxed line-clamp-3 font-medium">{tool.description}</p>
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-zinc-800/50 flex items-center justify-between">
+                       <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Elite Tier</span>
+                       <span className="text-blue-500/50 text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">Visit Site <i className="fa-solid fa-chevron-right text-[8px] ml-1"></i></span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
 
-      <section className="bg-zinc-900/40 border border-zinc-800 rounded-3xl p-8">
-        <h2 className="text-xl font-bold text-zinc-100 mb-6 flex items-center gap-3">
-          <i className="fa-solid fa-hourglass-start text-blue-500"></i>
-          Time-to-Competency Guide (Strategic 2026)
+      {/* Strategic Table */}
+      <section className="bg-zinc-900/40 border border-zinc-800 rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-[80px]"></div>
+        <h2 className="text-2xl font-black text-white mb-8 flex items-center gap-4">
+          <i className="fa-solid fa-hourglass-start text-emerald-500"></i>
+          Time-to-Competency Matrix
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead className="border-b border-zinc-800">
-              <tr className="text-zinc-500 font-bold uppercase tracking-widest text-[10px]">
-                <th className="pb-4 px-4">Domain</th>
-                <th className="pb-4 px-4">6–9 Months</th>
-                <th className="pb-4 px-4">9–18 Months</th>
-                <th className="pb-4 px-4">18–36 Months</th>
+              <tr className="text-zinc-500 font-black uppercase tracking-[0.2em] text-[10px]">
+                <th className="pb-6 px-6">Specialization Domain</th>
+                <th className="pb-6 px-6">Foundational (0-9m)</th>
+                <th className="pb-6 px-6">Architectural (9-18m)</th>
+                <th className="pb-6 px-6">Strategic (18-36m)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-800">
               {[
-                { d: 'AI & ML', s1: 'Fundamentals + Python', s2: 'Deep Learning + MLOps', s3: 'Advanced GenAI / Leadership' },
-                { d: 'Cloud Architecture', s1: 'Core + Associate Certs', s2: 'Professional Architect', s3: 'Multi-cloud Strategy' },
-                { d: 'Cybersecurity', s1: 'Security+', s2: 'CISSP / CISM', s3: 'Cloud/Zero Trust Specialist' },
-                { d: 'Data Analytics', s1: 'SQL + Analytics Basics', s2: 'Data Engineering', s3: 'Real-time & Big Data Lead' },
-                { d: 'Software Eng', s1: 'Core Languages', s2: 'Full-stack + DevOps', s3: 'Architecture + SRE' }
+                { d: 'AI & Machine Learning', s1: 'Foundations + Python Mastery', s2: 'Deep Learning + Core MLOps', s3: 'GenAI Leadership + R&D' },
+                { d: 'Cloud & Systems', s1: 'Core Provisioning + Certs', s2: 'Distributed Systems Arch', s3: 'Sovereign Multi-cloud' },
+                { d: 'Cyber Security', s1: 'Security+ / Network Flow', s2: 'Pen-Testing / Forensics', s3: 'Zero Trust Infrastructure' },
+                { d: 'Software Engineering', s1: 'Algo Foundations / Full-Stack', s2: 'Microservices / Node.js High-Perf', s3: 'System Design / Staff Eng' }
               ].map((row, idx) => (
-                <tr key={idx} className="hover:bg-zinc-800/30 transition-colors">
-                  <td className="py-4 px-4 font-bold text-zinc-200">{row.d}</td>
-                  <td className="py-4 px-4 text-zinc-400">{row.s1}</td>
-                  <td className="py-4 px-4 text-zinc-400">{row.s2}</td>
-                  <td className="py-4 px-4 text-zinc-400">{row.s3}</td>
+                <tr key={idx} className="hover:bg-zinc-800/30 transition-colors group">
+                  <td className="py-6 px-6 font-black text-zinc-200 group-hover:text-blue-400 transition-colors">{row.d}</td>
+                  <td className="py-6 px-6 text-zinc-400 font-medium">{row.s1}</td>
+                  <td className="py-6 px-6 text-zinc-400 font-medium">{row.s2}</td>
+                  <td className="py-6 px-6 text-zinc-400 font-medium">{row.s3}</td>
                 </tr>
               ))}
             </tbody>
