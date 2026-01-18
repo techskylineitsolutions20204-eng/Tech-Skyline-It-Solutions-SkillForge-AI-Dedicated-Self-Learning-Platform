@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { LEARNING_PATHS } from '../constants';
+import { LEARNING_PATHS, EXTERNAL_RESOURCES } from '../constants';
 import { LearningModule } from '../types';
 
 interface Project {
@@ -49,6 +49,8 @@ const Paths: React.FC = () => {
     setProjects(next);
     localStorage.setItem('skillforge_projects', JSON.stringify(next));
   };
+
+  const learningResources = EXTERNAL_RESOURCES.filter(r => r.category === 'LEARNING' || r.category === 'RESEARCH');
 
   return (
     <div className="max-w-7xl mx-auto space-y-12 pb-20">
@@ -180,6 +182,29 @@ const Paths: React.FC = () => {
                           <h4 className="font-bold text-white text-xl mb-3">{step.title}</h4>
                           <p className="text-zinc-400 leading-relaxed text-sm lg:text-base">{step.details}</p>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Supplemental Resources for this path */}
+                  <div className="space-y-6">
+                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-cyan-500 flex items-center gap-2">
+                      <i className="fa-solid fa-link"></i> Supplemental External Courseware
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {learningResources.map(res => (
+                        <a 
+                          key={res.id} 
+                          href={res.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-cyan-500/50 transition-all flex items-center gap-3 group"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-500 group-hover:text-cyan-400 transition-colors">
+                            <i className={`fa-solid ${res.icon}`}></i>
+                          </div>
+                          <span className="text-[11px] font-bold text-zinc-300 group-hover:text-white">{res.name}</span>
+                        </a>
                       ))}
                     </div>
                   </div>

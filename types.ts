@@ -77,3 +77,12 @@ export interface FirebaseStrategy {
   useCase: string;
   docUrl: string;
 }
+
+export interface ExternalResource {
+  id: string;
+  name: string;
+  url: string;
+  description: string;
+  category: 'AI_TOOL' | 'LEARNING' | 'RESEARCH' | 'IDE';
+  icon: string;
+}

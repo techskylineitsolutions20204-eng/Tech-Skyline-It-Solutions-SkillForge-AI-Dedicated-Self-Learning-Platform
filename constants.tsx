@@ -1,5 +1,80 @@
 
-import { LearningModule, FirebaseStrategy } from './types';
+import { LearningModule, FirebaseStrategy, ExternalResource } from './types';
+
+export const EXTERNAL_RESOURCES: ExternalResource[] = [
+  {
+    id: 'vscode',
+    name: 'VS Code',
+    url: 'https://code.visualstudio.com/',
+    description: 'The industry-standard extensible IDE for modern development.',
+    category: 'IDE',
+    icon: 'fa-code'
+  },
+  {
+    id: 'google-assist',
+    name: 'Google Code Assist',
+    url: 'https://codeassist.google/',
+    description: 'AI-powered code completion and assistance by Google.',
+    category: 'AI_TOOL',
+    icon: 'fa-google'
+  },
+  {
+    id: 'zzzcode',
+    name: 'ZZZCode',
+    url: 'https://zzzcode.ai/code-generator',
+    description: 'Instant AI code generation and debugging tools.',
+    category: 'AI_TOOL',
+    icon: 'fa-microchip-ai'
+  },
+  {
+    id: 'deepai',
+    name: 'DeepAI Code',
+    url: 'https://deepai.org/chat/ai-code',
+    description: 'Natural language to code translation and chat.',
+    category: 'AI_TOOL',
+    icon: 'fa-brain'
+  },
+  {
+    id: 'cline',
+    name: 'Cline Bot',
+    url: 'https://cline.bot/',
+    description: 'Autonomous AI coding agent for complex tasks.',
+    category: 'AI_TOOL',
+    icon: 'fa-robot'
+  },
+  {
+    id: 'fcc',
+    name: 'FreeCodeCamp',
+    url: 'https://www.freecodecamp.org/',
+    description: 'World-renowned non-profit platform for learning to code.',
+    category: 'LEARNING',
+    icon: 'fa-fire-flame-curved'
+  },
+  {
+    id: 'codecademy',
+    name: 'Codecademy',
+    url: 'https://www.codecademy.com/',
+    description: 'Interactive coding lessons across dozens of languages.',
+    category: 'LEARNING',
+    icon: 'fa-keyboard'
+  },
+  {
+    id: 'sololearn',
+    name: 'SoloLearn',
+    url: 'https://www.sololearn.com/en/',
+    description: 'Mobile-first learning environment for technical skills.',
+    category: 'LEARNING',
+    icon: 'fa-mobile-screen-button'
+  },
+  {
+    id: 'arxiv',
+    name: 'arXiv Research',
+    url: 'https://arxiv.org/abs/1209.2166',
+    description: 'Access to open-access scholarly articles in AI and STEM.',
+    category: 'RESEARCH',
+    icon: 'fa-book-open'
+  }
+];
 
 export const LEARNING_PATHS: LearningModule[] = [
   {
@@ -24,6 +99,30 @@ export const LEARNING_PATHS: LearningModule[] = [
       { title: 'Prompt Engineering & RAG', details: 'Context injection, Retrieval Augmented Generation (RAG), and Vector Databases (Pinecone, Weaviate).' },
       { title: 'LLM Fine-tuning & RLHF', details: 'PEFT (LoRA, QLoRA), Reinforcement Learning from Human Feedback (RLHF), and Quantization.' },
       { title: 'MLOps & Deployment', details: 'CI/CD for ML, Model monitoring, Data drift detection, and serving with TFX or TorchServe.' }
+    ]
+  },
+  {
+    id: 'soft-eng',
+    path: 'SOFT_ENG',
+    title: 'Software & Systems Eng.',
+    roles: ['Senior Full-Stack Developer', 'Backend Architect', 'Node.js Specialist', 'Frontend Engineer'],
+    skills: ['Node.js', 'Browser APIs', 'TypeScript', 'LeetCode Mastery', 'HackerRank Prep', 'Microservices', 'CI/CD'],
+    outlook: 'Fundamental demand for high-performance engineers with algorithmic proficiency.',
+    icon: 'fa-code-pull-request',
+    color: 'text-cyan-400',
+    learningUrl: 'https://roadmap.sh/full-stack',
+    certifications: [
+      { level: 'Foundational', name: 'AWS Certified Developer Associate', url: 'https://aws.amazon.com/certification/certified-developer-associate/' },
+      { level: 'Intermediate', name: 'Node.js Application Developer (LFNAD)', url: 'https://training.linuxfoundation.org/certification/jsnad/' },
+      { level: 'Advanced', name: 'Meta Full-Stack Engineer', url: 'https://www.coursera.org/professional-certificates/meta-full-stack-engineer' },
+      { level: 'Advanced', name: 'Google Professional DevOps Engineer', url: 'https://cloud.google.com/certifications/devops-engineer' }
+    ],
+    roadmap: [
+      { title: 'Algorithmic Mastery (LeetCode/HackerRank)', details: 'Data structures, Dynamic Programming, and Graph theory for high-tier technical interviews.' },
+      { title: 'Modern Full-stack (Browser/Node)', details: 'DOM manipulation, Browser rendering engines, and high-concurrency Node.js event-loop optimization.' },
+      { title: 'System Design & Architecture', details: 'Scalability, Load Balancing, Caching strategies, and Distributed Systems fundamentals.' },
+      { title: 'DevOps & SRE', details: 'CI/CD pipelines, Docker, Kubernetes, and full-stack observability with Grafana.' },
+      { title: 'Platform Engineering', details: 'Building Internal Developer Portals (IDPs) and self-service infrastructure.' }
     ]
   },
   {
@@ -96,30 +195,6 @@ export const LEARNING_PATHS: LearningModule[] = [
       { title: 'ETL/ELT Frameworks', details: 'dbt (data build tool), Airflow for orchestration, and modern ingestion tools.' },
       { title: 'Big Data Governance', details: 'Data quality, lineage, and catalogs (Atlan, Alation, Amundsen).' },
       { title: 'Advanced Visual Analytics', details: 'Real-time dashboards using Looker, Tableau, and custom D3.js apps.' }
-    ]
-  },
-  {
-    id: 'soft-eng',
-    path: 'SOFT_ENG',
-    title: 'Software & Systems Eng.',
-    roles: ['Full-Stack Developer', 'DevOps Engineer', 'SRE', 'Platform Engineer'],
-    skills: ['Full-stack', 'DevOps', 'SRE', 'Node.js', 'Go', 'Microservices', 'CI/CD'],
-    outlook: 'High demand for developers who can "own" the full lifecycle from code to prod.',
-    icon: 'fa-code-pull-request',
-    color: 'text-cyan-400',
-    learningUrl: 'https://roadmap.sh/full-stack',
-    certifications: [
-      { level: 'Foundational', name: 'AWS Certified Developer Associate', url: 'https://aws.amazon.com/certification/certified-developer-associate/' },
-      { level: 'Intermediate', name: 'Microsoft Certified: Azure Developer', url: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-developer/' },
-      { level: 'Advanced', name: 'Google Professional DevOps Engineer', url: 'https://cloud.google.com/certifications/devops-engineer' },
-      { level: 'Advanced', name: 'Linux Foundation SRE Cert', url: 'https://training.linuxfoundation.org/certification/certified-sre-practitioner/' }
-    ],
-    roadmap: [
-      { title: 'Full-stack Modernity', details: 'Advanced React/Next.js for frontend and Go/Rust/Node.js for high-perf backend.' },
-      { title: 'DevOps & Toolchains', details: 'Advanced GitHub Actions, Jenkins, and automated testing strategies.' },
-      { title: 'SRE & Observability', details: 'SLIs/SLOs, Error Budgets, and full-stack monitoring with Prometheus/Grafana.' },
-      { title: 'Microservices & APIs', details: 'Design patterns, GraphQL, gRPC, and API Gateway (Kong/Apigee) management.' },
-      { title: 'Platform Engineering', details: 'Building Internal Developer Portals (IDPs) and self-service infrastructure.' }
     ]
   },
   {

@@ -1,17 +1,16 @@
 
 import React from 'react';
-import { LEARNING_PATHS } from '../constants';
+import { LEARNING_PATHS, EXTERNAL_RESOURCES } from '../constants';
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="space-y-8 max-w-6xl mx-auto pb-20">
+    <div className="space-y-12 max-w-6xl mx-auto pb-20">
       <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 p-8 rounded-3xl relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
         <div className="relative z-10 space-y-4">
           <h1 className="text-4xl font-extrabold tracking-tight text-white">SkillForge <span className="text-blue-500">Command Center</span></h1>
           <p className="text-zinc-400 text-lg max-w-2xl">
-            You are on the path to mastering high-demand technologies for 2026. 
-            Architecture is live and projects are ready for deployment.
+            Empowering your journey to elite technical mastery. Access premium roadmaps, AI-driven labs, and industry-standard tooling.
           </p>
           <div className="flex gap-4 pt-4">
             <button className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold shadow-lg shadow-blue-600/20 transition-all flex items-center gap-2">
@@ -56,6 +55,48 @@ const Dashboard: React.FC = () => {
           <p className="text-sm text-zinc-500 mt-1">Top 15% in Distributed Systems</p>
         </div>
       </div>
+
+      {/* Recommended Elite Tooling & Resources */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-zinc-100 flex items-center gap-3">
+            <i className="fa-solid fa-toolbox text-blue-500"></i>
+            Elite Tooling & Ecosystem
+          </h2>
+          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">
+            Verified for 2026
+          </span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {EXTERNAL_RESOURCES.map((tool) => (
+            <a 
+              key={tool.id} 
+              href={tool.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-zinc-900/40 border border-zinc-800 p-5 rounded-2xl hover:border-blue-500/50 transition-all group flex items-start gap-4"
+            >
+              <div className="w-12 h-12 shrink-0 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:text-blue-400 transition-colors shadow-lg shadow-black/20">
+                <i className={`fa-solid ${tool.icon} text-lg`}></i>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-zinc-100 text-sm group-hover:text-white">{tool.name}</h4>
+                  <span className={`text-[8px] font-black uppercase tracking-tighter px-1.5 py-0.5 rounded ${
+                    tool.category === 'AI_TOOL' ? 'bg-purple-500/10 text-purple-400' :
+                    tool.category === 'LEARNING' ? 'bg-emerald-500/10 text-emerald-400' :
+                    tool.category === 'RESEARCH' ? 'bg-amber-500/10 text-amber-400' :
+                    'bg-blue-500/10 text-blue-400'
+                  }`}>
+                    {tool.category.replace('_', ' ')}
+                  </span>
+                </div>
+                <p className="text-[11px] text-zinc-500 leading-relaxed line-clamp-2">{tool.description}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
 
       <section className="bg-zinc-900/40 border border-zinc-800 rounded-3xl p-8">
         <h2 className="text-xl font-bold text-zinc-100 mb-6 flex items-center gap-3">
