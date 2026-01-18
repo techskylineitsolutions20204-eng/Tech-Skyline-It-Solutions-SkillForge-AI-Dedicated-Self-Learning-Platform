@@ -3,19 +3,51 @@ import React, { useState, useEffect } from 'react';
 import { LEARNING_PATHS } from '../constants';
 import { LearningModule } from '../types';
 
+interface Project {
+  name: string;
+  url: string;
+}
+
 const Paths: React.FC = () => {
   const [selectedPath, setSelectedPath] = useState<LearningModule | null>(null);
   const [notes, setNotes] = useState<Record<string, string>>({});
+  const [projects, setProjects] = useState<Record<string, Project[]>>({});
+  const [newProjectName, setNewProjectName] = useState('');
+  const [newProjectUrl, setNewProjectUrl] = useState('');
 
   useEffect(() => {
-    const saved = localStorage.getItem('skillforge_notes');
-    if (saved) setNotes(JSON.parse(saved));
+    const savedNotes = localStorage.getItem('skillforge_notes');
+    if (savedNotes) setNotes(JSON.parse(savedNotes));
+
+    const savedProjects = localStorage.getItem('skillforge_projects');
+    if (savedProjects) setProjects(JSON.parse(savedProjects));
   }, []);
 
   const handleNoteChange = (pathId: string, val: string) => {
     const next = { ...notes, [pathId]: val };
     setNotes(next);
     localStorage.setItem('skillforge_notes', JSON.stringify(next));
+  };
+
+  const addProject = (pathId: string) => {
+    if (!newProjectName.trim() || !newProjectUrl.trim()) return;
+    
+    const newProject: Project = { name: newProjectName, url: newProjectUrl };
+    const currentPathProjects = projects[pathId] || [];
+    const next = { ...projects, [pathId]: [...currentPathProjects, newProject] };
+    
+    setProjects(next);
+    localStorage.setItem('skillforge_projects', JSON.stringify(next));
+    setNewProjectName('');
+    setNewProjectUrl('');
+  };
+
+  const removeProject = (pathId: string, index: number) => {
+    const currentPathProjects = [...(projects[pathId] || [])];
+    currentPathProjects.splice(index, 1);
+    const next = { ...projects, [pathId]: currentPathProjects };
+    setProjects(next);
+    localStorage.setItem('skillforge_projects', JSON.stringify(next));
   };
 
   return (
@@ -91,7 +123,7 @@ const Paths: React.FC = () => {
 
             <div className="flex-1 overflow-y-auto p-8 sm:p-12">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                {/* Left Column: Docs & Certs */}
+                {/* Left Column: Docs & Notes */}
                 <div className="lg:col-span-4 space-y-10">
                    <div className="space-y-6">
                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-blue-500 flex items-center gap-2">
@@ -129,7 +161,7 @@ const Paths: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Right Column: Roadmap & Lab */}
+                {/* Right Column: Roadmap & Projects */}
                 <div className="lg:col-span-8 space-y-10">
                   <div className="bg-zinc-950/40 border border-zinc-800 p-8 sm:p-10 rounded-[3rem] space-y-10 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px]"></div>
@@ -150,16 +182,68 @@ const Paths: React.FC = () => {
                         </div>
                       ))}
                     </div>
+                  </div>
 
-                    <div className="pt-8 flex flex-col sm:flex-row gap-4">
-                      <a 
-                        href={selectedPath.learningUrl} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-3xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 shadow-2xl shadow-blue-600/30 transition-all hover:scale-[1.02] active:scale-95"
-                      >
-                         Launch Study Interface <i className="fa-solid fa-rocket"></i>
-                      </a>
+                  {/* Project Showcase Section */}
+                  <div className="bg-zinc-950/40 border border-zinc-800 p-8 sm:p-10 rounded-[3rem] space-y-6">
+                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-pink-500 flex items-center gap-2">
+                      <i className="fa-solid fa-folder-open"></i> Project Showcase & GitHub
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-4">
+                        <div className="flex flex-col gap-2">
+                          <input 
+                            type="text" 
+                            placeholder="Project Name (e.g. Distributed Ledger)"
+                            value={newProjectName}
+                            onChange={(e) => setNewProjectName(e.target.value)}
+                            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2 text-sm text-zinc-200 outline-none focus:ring-1 focus:ring-pink-500"
+                          />
+                          <input 
+                            type="text" 
+                            placeholder="URL (e.g. https://github.com/...)"
+                            value={newProjectUrl}
+                            onChange={(e) => setNewProjectUrl(e.target.value)}
+                            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2 text-sm text-zinc-200 outline-none focus:ring-1 focus:ring-pink-500"
+                          />
+                          <button 
+                            onClick={() => addProject(selectedPath.id)}
+                            className="w-full py-2.5 bg-pink-600 hover:bg-pink-500 text-white rounded-xl text-xs font-bold uppercase tracking-widest transition-all shadow-lg shadow-pink-600/20"
+                          >
+                            Add Project Link
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                        {projects[selectedPath.id]?.length ? (
+                          projects[selectedPath.id].map((proj, idx) => (
+                            <div key={idx} className="flex items-center justify-between p-3 bg-zinc-900 rounded-xl border border-zinc-800 group hover:border-pink-500/50 transition-all">
+                              <a 
+                                href={proj.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-3 overflow-hidden"
+                              >
+                                <i className="fa-brands fa-github text-zinc-500 group-hover:text-pink-500"></i>
+                                <span className="text-xs font-bold text-zinc-300 truncate">{proj.name}</span>
+                              </a>
+                              <button 
+                                onClick={() => removeProject(selectedPath.id, idx)}
+                                className="p-1.5 text-zinc-700 hover:text-red-500 transition-colors"
+                              >
+                                <i className="fa-solid fa-trash-can text-[10px]"></i>
+                              </button>
+                            </div>
+                          ))
+                        ) : (
+                          <div className="flex flex-col items-center justify-center h-full py-8 text-zinc-700 border-2 border-dashed border-zinc-800 rounded-2xl">
+                            <i className="fa-solid fa-cloud-upload text-2xl mb-2"></i>
+                            <p className="text-[10px] font-bold uppercase tracking-widest">No projects linked yet</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
 

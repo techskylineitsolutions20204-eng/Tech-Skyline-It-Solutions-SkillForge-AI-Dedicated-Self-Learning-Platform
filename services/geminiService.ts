@@ -83,7 +83,8 @@ export const analyzeCode = async (code: string, task: string) => {
     ${code}
     \`\`\`
     Provide constructive feedback, identify potential bugs for debugging, and suggest improvements.
-    Return as JSON with status (success/warning/error), message, and suggestions (array).`,
+    Also provide a 'detailedReview' which is a long-form text analysis of the architecture and logic.
+    Return as JSON with status (success/warning/error), message, suggestions (array), and detailedReview (string).`,
     config: {
       responseMimeType: "application/json",
       responseSchema: {
@@ -91,9 +92,10 @@ export const analyzeCode = async (code: string, task: string) => {
         properties: {
           status: { type: Type.STRING, enum: ["success", "warning", "error"] },
           message: { type: Type.STRING },
-          suggestions: { type: Type.ARRAY, items: { type: Type.STRING } }
+          suggestions: { type: Type.ARRAY, items: { type: Type.STRING } },
+          detailedReview: { type: Type.STRING }
         },
-        required: ["status", "message", "suggestions"]
+        required: ["status", "message", "suggestions", "detailedReview"]
       }
     }
   });

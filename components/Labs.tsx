@@ -8,7 +8,7 @@ const Labs: React.FC = () => {
   const [selectedPath, setSelectedPath] = useState(LEARNING_PATHS[0]);
   const [scenario, setScenario] = useState<LabScenario | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [activeView, setActiveView] = useState<'editor' | 'terminal' | 'debugger'>('terminal');
+  const [activeView, setActiveView] = useState<'editor' | 'terminal' | 'debugger' | 'llmOutput'>('terminal');
   const [terminalOutput, setTerminalOutput] = useState<string[]>(['System boot successful...', 'Waiting for lab selection...']);
   const [code, setCode] = useState('// Write your solution here...\n\nfunction solve() {\n  let x = 10;\n  let y = 20;\n  let sum = x + y;\n  console.log("Sum is:", sum);\n  return sum;\n}\n\nsolve();');
   const [feedback, setFeedback] = useState<LabFeedback | null>(null);
@@ -16,6 +16,11 @@ const Labs: React.FC = () => {
   const [metrics, setMetrics] = useState<LabMetrics>({ cpu: 12, memory: 450, latency: 45 });
   const [inputValue, setInputValue] = useState('');
   const [breakpoints, setBreakpoints] = useState<Set<number>>(new Set());
+  const [copySuccess, setCopySuccess] = useState(false);
+  
+  // Collaboration State
+  const [collabId, setCollabId] = useState<string>('');
+  const [isCollaborating, setIsCollaborating] = useState(false);
   
   // Debugger specific state
   const [debugTrace, setDebugTrace] = useState<DebugState[]>([]);
@@ -24,6 +29,45 @@ const Labs: React.FC = () => {
 
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const editorScrollRef = useRef<HTMLDivElement>(null);
+
+  // Sync with other tabs for collaboration
+  useEffect(() => {
+    if (!isCollaborating || !collabId) return;
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === `skillforge_collab_code_${collabId}` && e.newValue !== null) {
+        setCode(e.newValue);
+      }
+      if (e.key === `skillforge_collab_terminal_${collabId}` && e.newValue !== null) {
+        setTerminalOutput(JSON.parse(e.newValue));
+      }
+      if (e.key === `skillforge_collab_scenario_${collabId}` && e.newValue !== null) {
+        setScenario(JSON.parse(e.newValue));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [isCollaborating, collabId]);
+
+  // Update storage when local state changes (only if collaborating)
+  useEffect(() => {
+    if (isCollaborating && collabId) {
+      localStorage.setItem(`skillforge_collab_code_${collabId}`, code);
+    }
+  }, [code, isCollaborating, collabId]);
+
+  useEffect(() => {
+    if (isCollaborating && collabId) {
+      localStorage.setItem(`skillforge_collab_terminal_${collabId}`, JSON.stringify(terminalOutput));
+    }
+  }, [terminalOutput, isCollaborating, collabId]);
+
+  useEffect(() => {
+    if (isCollaborating && collabId && scenario) {
+      localStorage.setItem(`skillforge_collab_scenario_${collabId}`, JSON.stringify(scenario));
+    }
+  }, [scenario, isCollaborating, collabId]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -118,6 +162,7 @@ const Labs: React.FC = () => {
       const result = await analyzeCode(code, scenario.objective);
       setFeedback(result);
       setTerminalOutput(prev => [...prev, `[ANALYSIS] AI Review complete: ${result.message}`]);
+      setActiveView('llmOutput');
     } catch (error) {
       setTerminalOutput(prev => [...prev, '[ERROR] AI Feedback engine offline.']);
     } finally {
@@ -130,6 +175,12 @@ const Labs: React.FC = () => {
     setActiveView('terminal');
   };
 
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(code);
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
+  };
+
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
@@ -140,6 +191,18 @@ const Labs: React.FC = () => {
     else if (cmd === 'clear') setTerminalOutput(['Terminal cleared.']);
     else setTerminalOutput(prev => [...prev, `Command '${cmd}' processed in sandbox.`]);
     setInputValue('');
+  };
+
+  const toggleCollaboration = () => {
+    if (isCollaborating) {
+      setIsCollaborating(false);
+      setTerminalOutput(prev => [...prev, '[SYSTEM] Collaboration mode disabled.']);
+    } else {
+      const id = collabId || 'default-session';
+      setCollabId(id);
+      setIsCollaborating(true);
+      setTerminalOutput(prev => [...prev, `[SYSTEM] Collaboration enabled. Session ID: ${id}. Open this app in another tab to see real-time syncing.`]);
+    }
   };
 
   const currentStep = currentStepIndex >= 0 ? debugTrace[currentStepIndex] : null;
@@ -174,7 +237,28 @@ const Labs: React.FC = () => {
           </div>
         </div>
         <div className="flex gap-3">
-          <button onClick={startLab} disabled={isLoading} className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+          <div className="flex items-center gap-2 bg-zinc-800/50 p-1 rounded-xl border border-zinc-700/50 mr-2">
+            <input 
+              type="text" 
+              placeholder="Session ID" 
+              value={collabId} 
+              onChange={(e) => setCollabId(e.target.value)}
+              disabled={isCollaborating}
+              className="bg-transparent border-none outline-none text-[10px] font-bold text-zinc-300 w-24 px-2"
+            />
+            <button 
+              onClick={toggleCollaboration} 
+              className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all flex items-center gap-2 ${
+                isCollaborating 
+                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20' 
+                : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600'
+              }`}
+            >
+              <i className={`fa-solid ${isCollaborating ? 'fa-user-group' : 'fa-link'}`}></i>
+              {isCollaborating ? 'Live' : 'Collab'}
+            </button>
+          </div>
+          <button onClick={startLab} className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
             <i className="fa-solid fa-rotate-right"></i> Reset
           </button>
           <button onClick={handleStartDebug} disabled={isDebugLoading || !scenario} className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
@@ -211,7 +295,7 @@ const Labs: React.FC = () => {
             </div>
 
             <div className="space-y-4 pt-4 border-t border-zinc-800">
-              <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Active Instructions</h3>
+              <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Active Instructions {isCollaborating && <span className="text-emerald-500 ml-1 text-[8px]">(SYNCED)</span>}</h3>
               {scenario ? (
                 <div className="space-y-4">
                   <div>
@@ -312,18 +396,24 @@ const Labs: React.FC = () => {
         {/* Right: Main IDE Canvas */}
         <div className="col-span-12 lg:col-span-9 bg-zinc-950 border border-zinc-800 rounded-3xl flex flex-col overflow-hidden shadow-2xl relative">
           <div className="bg-zinc-900 px-6 py-3 border-b border-zinc-800 flex items-center justify-between">
-            <div className="flex gap-1.5">
-              {['editor', 'terminal', 'debugger'].map((v) => (
+            <div className="flex gap-1.5 overflow-x-auto">
+              {[
+                {id: 'editor', label: 'Editor', icon: 'fa-code'},
+                {id: 'terminal', label: 'Terminal', icon: 'fa-terminal'},
+                {id: 'debugger', label: 'Debugger', icon: 'fa-bug'},
+                {id: 'llmOutput', label: 'LLM Output', icon: 'fa-brain-circuit'}
+              ].map((v) => (
                 <button
-                  key={v}
-                  onClick={() => setActiveView(v as any)}
-                  className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all uppercase tracking-widest ${
-                    activeView === v 
+                  key={v.id}
+                  onClick={() => setActiveView(v.id as any)}
+                  className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all uppercase tracking-widest flex items-center gap-2 whitespace-nowrap ${
+                    activeView === v.id 
                       ? 'bg-zinc-800 text-blue-400 border border-zinc-700 shadow-inner' 
                       : 'text-zinc-500 hover:text-zinc-300'
                   }`}
                 >
-                  {v}
+                  <i className={`fa-solid ${v.icon} text-[10px]`}></i>
+                  {v.label}
                 </button>
               ))}
             </div>
@@ -346,7 +436,21 @@ const Labs: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex gap-4">
+              <div className="flex items-center gap-4">
+                 {isCollaborating && (
+                   <span className="flex items-center gap-1.5 text-[9px] font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2 py-1 rounded">
+                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                     Live Sync
+                   </span>
+                 )}
+                 <button 
+                   onClick={handleCopyCode} 
+                   className="text-xs font-bold text-zinc-400 hover:text-zinc-200 flex items-center gap-2 transition-colors px-2 py-1 rounded hover:bg-zinc-800"
+                   title="Copy Code to Clipboard"
+                 >
+                   <i className={`fa-solid ${copySuccess ? 'fa-check text-emerald-500' : 'fa-copy'}`}></i>
+                   {copySuccess ? 'Copied' : 'Copy'}
+                 </button>
                  <button onClick={runCode} className="text-xs font-bold text-emerald-500 hover:text-emerald-400 flex items-center gap-2 transition-colors">
                    <i className="fa-solid fa-play"></i> Run Code
                  </button>
@@ -408,7 +512,7 @@ const Labs: React.FC = () => {
               <div className="absolute inset-0 flex flex-col bg-[#09090b] animate-in fade-in duration-300">
                 <div className="flex-1 overflow-y-auto p-8 font-mono text-sm space-y-2">
                   {terminalOutput.map((line, idx) => (
-                    <div key={idx} className={`${line.startsWith('$') ? 'text-blue-400' : line.startsWith('[ERROR]') ? 'text-red-400' : line.startsWith('[SUCCESS]') ? 'text-emerald-400' : line.startsWith('[ANALYSIS]') ? 'text-purple-400' : line.startsWith('[DEBUG]') ? 'text-blue-400' : 'text-zinc-400'}`}>
+                    <div key={idx} className={`${line.startsWith('$') ? 'text-blue-400' : line.startsWith('[ERROR]') ? 'text-red-400' : line.startsWith('[SUCCESS]') ? 'text-emerald-400' : line.startsWith('[ANALYSIS]') ? 'text-purple-400' : line.startsWith('[DEBUG]') ? 'text-blue-400' : line.startsWith('[SYSTEM]') ? 'text-amber-400' : 'text-zinc-400'}`}>
                       {line}
                     </div>
                   ))}
@@ -424,6 +528,75 @@ const Labs: React.FC = () => {
                     className="flex-1 bg-transparent border-none outline-none font-mono text-blue-400 placeholder:text-zinc-700"
                   />
                 </form>
+              </div>
+            )}
+
+            {activeView === 'llmOutput' && (
+              <div className="absolute inset-0 flex flex-col bg-[#09090b] animate-in slide-in-from-right-4 duration-500">
+                <div className="flex-1 overflow-y-auto p-10 font-sans leading-relaxed text-zinc-300">
+                  {isAnalyzing ? (
+                    <div className="flex flex-col items-center justify-center h-full gap-4 text-zinc-500">
+                      <i className="fa-solid fa-brain-circuit fa-spin text-4xl text-blue-500"></i>
+                      <p className="text-sm font-bold uppercase tracking-widest animate-pulse">AI is deconstructing your logic...</p>
+                    </div>
+                  ) : feedback ? (
+                    <div className="max-w-4xl mx-auto space-y-8">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-600/10 border border-blue-500/30 flex items-center justify-center text-blue-500">
+                           <i className="fa-solid fa-robot text-xl"></i>
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-black text-white">Full AI Review</h2>
+                          <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Architectural Analysis & Feedback</p>
+                        </div>
+                      </div>
+
+                      <div className={`p-6 rounded-3xl border ${
+                        feedback.status === 'success' ? 'bg-emerald-500/5 border-emerald-500/30' : 
+                        feedback.status === 'warning' ? 'bg-amber-500/5 border-amber-500/30' : 
+                        'bg-red-500/5 border-red-500/30'
+                      }`}>
+                        <p className="text-sm italic font-medium">"{feedback.message}"</p>
+                      </div>
+
+                      <div className="space-y-6">
+                        <h3 className="text-sm font-black text-white uppercase tracking-[0.2em] flex items-center gap-2">
+                          <i className="fa-solid fa-scroll text-blue-400"></i>
+                          Detailed Technical Report
+                        </h3>
+                        <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-[2rem] text-sm text-zinc-400 leading-8 whitespace-pre-wrap font-mono">
+                          {feedback.detailedReview || "No detailed review generated. Try running 'Review' again."}
+                        </div>
+                      </div>
+
+                      <div className="space-y-6">
+                        <h3 className="text-sm font-black text-white uppercase tracking-[0.2em] flex items-center gap-2">
+                          <i className="fa-solid fa-lightbulb text-amber-400"></i>
+                          Key Recommendations
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {feedback.suggestions.map((s, idx) => (
+                            <div key={idx} className="p-5 bg-zinc-900 border border-zinc-800 rounded-2xl flex gap-4 group hover:border-blue-500/50 transition-all">
+                              <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[10px] font-black shrink-0 group-hover:text-blue-400">
+                                {idx + 1}
+                              </div>
+                              <p className="text-xs font-medium leading-relaxed">{s}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center h-full gap-4 text-zinc-700 border-2 border-dashed border-zinc-900 rounded-[3rem] m-8">
+                       <i className="fa-solid fa-microchip text-4xl mb-2"></i>
+                       <p className="text-sm font-bold uppercase tracking-widest">No review active</p>
+                       <p className="text-xs">Click the "Review" button in the header to trigger an LLM analysis of your code.</p>
+                       <button onClick={handleAnalyze} className="mt-4 px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-blue-600/20">
+                         Trigger Analysis
+                       </button>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>

@@ -49,6 +49,7 @@ export interface LabFeedback {
   status: 'success' | 'warning' | 'error';
   message: string;
   suggestions: string[];
+  detailedReview?: string;
 }
 
 export interface LabMetrics {
