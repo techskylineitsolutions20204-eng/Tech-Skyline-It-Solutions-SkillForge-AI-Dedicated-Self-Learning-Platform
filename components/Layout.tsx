@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
   return (
     <div className="flex h-screen overflow-hidden bg-zinc-950">
       {/* Sidebar */}
-      <aside className="w-64 bg-zinc-900/50 border-r border-zinc-800 flex flex-col">
+      <aside className="w-72 bg-zinc-900/50 border-r border-zinc-800 flex flex-col">
         <div className="p-6 flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
             <i className="fa-solid fa-bolt-lightning text-white text-xl"></i>
@@ -43,13 +43,21 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
           ))}
         </nav>
 
-        <div className="p-4 border-t border-zinc-800">
+        <div className="p-4 border-t border-zinc-800 space-y-4">
           <div className="bg-zinc-800/50 rounded-xl p-4">
             <p className="text-xs text-zinc-500 mb-2 uppercase tracking-wider font-bold">Blaze Plan Enabled</p>
             <div className="h-2 w-full bg-zinc-700 rounded-full overflow-hidden">
               <div className="h-full w-3/4 bg-amber-500"></div>
             </div>
             <p className="text-[10px] text-zinc-400 mt-2">Ready for Firebase App Hosting & Cloud Functions.</p>
+          </div>
+          
+          <div className="px-2 py-2 text-[10px] text-zinc-500 space-y-1 font-medium">
+            <p className="font-bold text-zinc-400 uppercase tracking-widest text-[8px] mb-2">Technical Support</p>
+            <p className="flex items-center gap-2"><i className="fa-solid fa-phone w-3"></i> USA: +1 (408) 614-0468</p>
+            <p className="flex items-center gap-2"><i className="fa-brands fa-whatsapp w-3"></i> WhatsApp: +91 81062 43684</p>
+            <p className="flex items-center gap-2 truncate"><i className="fa-solid fa-envelope w-3"></i> techskylineitsolutions20204@gmail.com</p>
+            <p className="mt-2 font-bold text-blue-500/80">Tech Skyline IT Solutions</p>
           </div>
         </div>
       </aside>

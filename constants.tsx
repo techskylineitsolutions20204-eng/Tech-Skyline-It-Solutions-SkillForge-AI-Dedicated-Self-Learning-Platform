@@ -7,8 +7,8 @@ export const LEARNING_PATHS: LearningModule[] = [
     path: 'AI_ML',
     title: 'AI & Machine Learning',
     roles: ['AI/ML Engineer', 'Machine Learning Scientist', 'GenAI Specialist', 'AI Product Manager'],
-    skills: ['Python', 'TensorFlow', 'PyTorch', 'NLP', 'LLM Engineering', 'MLOps'],
-    outlook: 'Top-tier global wages due to specialist scarcity.',
+    skills: ['Python', 'TensorFlow', 'PyTorch', 'NLP', 'Deep Learning Architectures', 'LLMs'],
+    outlook: 'Salaries often sit at the top of tech wage tables globally due to scarcity.',
     icon: 'fa-brain',
     color: 'text-purple-400',
     learningUrl: 'https://www.deeplearning.ai/courses/generative-ai-with-llms/',
@@ -18,40 +18,43 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Foundational', name: 'MS Azure AI Fundamentals (AI-900)', url: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/' },
       { level: 'Intermediate', name: 'TensorFlow Developer Certificate', url: 'https://www.tensorflow.org/certificate' },
       { level: 'Intermediate', name: 'AWS Certified Machine Learning – Specialty', url: 'https://aws.amazon.com/certification/certified-machine-learning-specialty/' },
-      { level: 'Advanced', name: 'NVIDIA DLI Deep Learning Cert', url: 'https://www.nvidia.com/en-us/training/' }
+      { level: 'Advanced', name: 'DeepLearning.AI Generative AI', url: 'https://www.deeplearning.ai/courses/generative-ai-with-llms/' },
+      { level: 'Advanced', name: 'NVIDIA DLI Certifications', url: 'https://www.nvidia.com/en-us/training/' }
     ],
     roadmap: [
       { title: 'Math & Fundamentals', details: 'Linear algebra, probability, statistics.' },
       { title: 'Python for ML', details: 'NumPy, pandas, scikit-learn.' },
       { title: 'Deep Learning', details: 'Neural networks, CNNs, RNNs.' },
-      { title: 'Generative AI & Transformers', details: 'LLMs, fine-tuning, RAG architectures.' },
-      { title: 'MLOps', details: 'Model deployment, versioning, monitoring.' }
+      { title: 'Generative AI & Transformers', details: 'LLMs, fine-tuning, RAG.' },
+      { title: 'MLOps', details: 'Model deployment, versioning, monitoring.' },
+      { title: 'Capstone', details: 'Real-world AI project + portfolio.' }
     ]
   },
   {
     id: 'cloud',
     path: 'CLOUD',
-    title: 'Cloud & Edge Computing',
-    roles: ['Cloud Solutions Architect', 'Cloud Infrastructure Engineer', 'SRE'],
-    skills: ['AWS/Azure/GCP', 'Docker', 'Kubernetes', 'Terraform', 'Edge Computing'],
-    outlook: 'Critical enterprise scaling infrastructure.',
+    title: 'Cloud & Architecture',
+    roles: ['Cloud Solutions Architect', 'Cloud Infrastructure Engineer', 'SRE', 'Multi-cloud Architect'],
+    skills: ['Multi-cloud', 'Hybrid Cloud', 'Kubernetes', 'Terraform', 'Service Mesh', 'FinOps'],
+    outlook: 'High demand for architects capable of managing complex multi-provider environments.',
     icon: 'fa-cloud',
     color: 'text-blue-400',
     learningUrl: 'https://aws.amazon.com/training/',
     certifications: [
       { level: 'Foundational', name: 'AWS Cloud Practitioner', url: 'https://aws.amazon.com/certification/certified-cloud-practitioner/' },
-      { level: 'Foundational', name: 'Azure Fundamentals (AZ-900)', url: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/' },
       { level: 'Intermediate', name: 'AWS Solutions Architect Associate', url: 'https://aws.amazon.com/certification/certified-solutions-architect-associate/' },
-      { level: 'Intermediate', name: 'Google Cloud Professional Architect', url: 'https://cloud.google.com/certifications/cloud-architect' },
+      { level: 'Intermediate', name: 'HashiCorp Certified: Terraform Associate', url: 'https://www.hashicorp.com/certification/terraform-associate' },
       { level: 'Advanced', name: 'Certified Kubernetes Administrator (CKA)', url: 'https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/' },
-      { level: 'Advanced', name: 'HashiCorp Certified: Terraform Associate', url: 'https://www.hashicorp.com/certification/terraform-associate' }
+      { level: 'Advanced', name: 'Google Professional Cloud Architect', url: 'https://cloud.google.com/certifications/cloud-architect' },
+      { level: 'Advanced', name: 'Azure Solutions Architect Expert', url: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-solutions-architect/' }
     ],
     roadmap: [
-      { title: 'Cloud Basics', details: 'IaaS, PaaS, SaaS, virtualization.' },
-      { title: 'Core Services', details: 'Compute, storage, networking (VPCs).' },
-      { title: 'Containers & Orchestration', details: 'Docker, Kubernetes, Helm.' },
-      { title: 'Security & Cost', details: 'FinOps and IAM policies.' },
-      { title: 'Edge Computing', details: 'IoT integration and Edge AI.' }
+      { title: 'Infrastructure as Code (IaC)', details: 'Mastering Terraform for reproducible multi-provider resource provisioning.' },
+      { title: 'Kubernetes & Containers', details: 'Deep dive into Docker, Kubernetes objects, Helm, and cluster administration (EKS, GKE, AKS).' },
+      { title: 'Multi-Cloud Strategy', details: 'Workload distribution patterns across AWS, GCP, and Azure; Disaster Recovery and High Availability.' },
+      { title: 'Hybrid Cloud Connectivity', details: 'Establishing secure connections between On-prem and Cloud via VPN, Direct Connect, and Interconnect.' },
+      { title: 'Service Mesh & Networking', details: 'Implementing Istio or Linkerd for microservices communication, observability, and security in hybrid clusters.' },
+      { title: 'Cloud FinOps & Governance', details: 'Cost optimization strategies, tagging policies, and governance across disparate cloud providers.' }
     ]
   },
   {
@@ -59,8 +62,8 @@ export const LEARNING_PATHS: LearningModule[] = [
     path: 'CYBERSECURITY',
     title: 'Cybersecurity & Trust',
     roles: ['Security Architect', 'Ethical Hacker', 'Security Engineer'],
-    skills: ['Zero Trust', 'SIEM', 'IAM', 'Penetration Testing', 'Incident Response'],
-    outlook: 'Massive demand for defensive and offensive specialists.',
+    skills: ['Zero Trust', 'Firewalls', 'SIEM', 'IAM', 'Encryption', 'Incident Response'],
+    outlook: 'Highest demand due to increasing digital threats and vulnerabilities.',
     icon: 'fa-shield-virus',
     color: 'text-red-400',
     learningUrl: 'https://www.comptia.org/certifications/security',
@@ -70,14 +73,15 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Intermediate', name: 'ISC2 CISSP', url: 'https://www.isc2.org/Certifications/CISSP' },
       { level: 'Intermediate', name: 'Cloud Security (CCSP)', url: 'https://www.isc2.org/Certifications/CCSP' },
       { level: 'Advanced', name: 'OSCP (Offensive Security)', url: 'https://www.offsec.com/pen200-oscp/' },
-      { level: 'Advanced', name: 'Forrester Zero Trust Certification', url: 'https://www.forrester.com/certification/zero-trust-strategies/' }
+      { level: 'Advanced', name: 'Certified Incident Handler (GCIH)', url: 'https://www.giac.org/certification/certified-incident-handler-gcih' }
     ],
     roadmap: [
-      { title: 'Security Fundamentals', details: 'Threats, vulnerabilities, risk management.' },
-      { title: 'Networking & Tools', details: 'Firewalls, SIEM, Wireshark.' },
-      { title: 'Cloud Security', details: 'IAM, encryption, secure architectures.' },
+      { title: 'Security Fundamentals', details: 'Threats, vulnerabilities, risk mitigation.' },
+      { title: 'Networking & Tools', details: 'Firewalls, SIEM (Splunk/Sentinel).' },
+      { title: 'Cloud Security', details: 'IAM, KMS, secure cloud architecture.' },
       { title: 'Ethical Hacking', details: 'Penetration testing and Red Teaming.' },
-      { title: 'Zero Trust Architecture', details: 'Identity-driven security & automation.' }
+      { title: 'Zero Trust', details: 'Architecture design and automation.' },
+      { title: 'Capture-the-Flag', details: 'Live hands-on CTF challenge labs.' }
     ]
   },
   {
@@ -85,8 +89,8 @@ export const LEARNING_PATHS: LearningModule[] = [
     path: 'DATA_ANALYTICS',
     title: 'Data Science & Big Data',
     roles: ['Big Data Engineer', 'Data Architect', 'Data Scientist'],
-    skills: ['SQL', 'Python/R', 'ETL', 'Spark', 'Kafka', 'BI Tools'],
-    outlook: 'Data is the new oil; processing speed is critical.',
+    skills: ['SQL', 'Python/R', 'ETL Pipelines', 'Spark', 'Kafka', 'BI Tools'],
+    outlook: 'Critical for real-time business insights and data-driven decisions.',
     icon: 'fa-chart-network',
     color: 'text-emerald-400',
     learningUrl: 'https://grow.google/certificates/data-analytics/',
@@ -95,24 +99,25 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Foundational', name: 'Azure Data Fundamentals', url: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-data-fundamentals/' },
       { level: 'Intermediate', name: 'IBM Data Science Professional', url: 'https://www.coursera.org/professional-certificates/ibm-data-science' },
       { level: 'Intermediate', name: 'SAS Certified Data Scientist', url: 'https://www.sas.com/en_us/certification/credentials/data-science/data-scientist.html' },
-      { level: 'Advanced', name: 'Cloudera Big Data Certification', url: 'https://www.cloudera.com/about/training/certification.html' },
-      { level: 'Advanced', name: 'Certified Analytics Professional (CAP)', url: 'https://www.certifiedanalytics.org/' }
+      { level: 'Advanced', name: 'Certified Analytics Professional (CAP)', url: 'https://www.certifiedanalytics.org/' },
+      { level: 'Advanced', name: 'TensorFlow Data Specialization', url: 'https://www.coursera.org/specializations/tensorflow-data-and-deployment' }
     ],
     roadmap: [
-      { title: 'Data Literacy & SQL', details: 'Relational databases and query optimization.' },
-      { title: 'Python / R Analysis', details: 'Statistical analysis and data cleaning.' },
+      { title: 'Data Literacy & SQL', details: 'Relational databases and advanced queries.' },
+      { title: 'Python / R Analysis', details: 'NumPy, pandas, statistical testing.' },
+      { title: 'Statistics', details: 'Experimentation and data modeling.' },
       { title: 'Data Engineering', details: 'ETL, pipelines, and schema design.' },
-      { title: 'Real-Time Analytics', details: 'Streaming data with Spark & Kafka.' },
-      { title: 'BI & Visualization', details: 'Storytelling with Tableau or PowerBI.' }
+      { title: 'Real-Time Analytics', details: 'BI Tools and streaming analytics.' },
+      { title: 'Portfolio', details: 'Full dashboards + case study projects.' }
     ]
   },
   {
     id: 'soft-eng',
     path: 'SOFT_ENG',
-    title: 'Software & Systems Eng.',
-    roles: ['Full-Stack Developer', 'API Specialist', 'DevOps Engineer'],
-    skills: ['React/Angular', 'Node/Go', 'Microservices', 'Linux', 'SRE'],
-    outlook: 'Core foundation for all digital products.',
+    title: 'Software Engineering',
+    roles: ['Full-Stack Developer', 'Backend Architect', 'API Specialist'],
+    skills: ['React/Angular', 'Node/Django', 'Go', 'Microservices', 'SRE'],
+    outlook: 'Modern web and systems architecture remain evergreen essentials.',
     icon: 'fa-code-branch',
     color: 'text-cyan-400',
     learningUrl: 'https://roadmap.sh/full-stack',
@@ -125,20 +130,21 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Advanced', name: 'Linux Foundation SRE Cert', url: 'https://training.linuxfoundation.org/certification/certified-sre-practitioner/' }
     ],
     roadmap: [
-      { title: 'CS Fundamentals', details: 'Data structures, algorithms, system design.' },
-      { title: 'Backend & APIs', details: 'Node.js, Python, or Go with REST/GraphQL.' },
-      { title: 'Frontend Mastery', details: 'Modern frameworks like React or Angular.' },
+      { title: 'CS Fundamentals', details: 'Data structures, algorithms, logic.' },
+      { title: 'Backend & APIs', details: 'Node.js, Python, or Go with GraphQL.' },
+      { title: 'Frontend', details: 'React, Angular, or Vue with state management.' },
       { title: 'Databases & Caching', details: 'Postgres, MongoDB, Redis.' },
-      { title: 'DevOps & SRE', details: 'CI/CD, observability, and site reliability.' }
+      { title: 'SRE & DevOps', details: 'CI/CD and Site Reliability Engineering.' },
+      { title: 'Cloud-Native', details: 'Building for distributed environments.' }
     ]
   },
   {
     id: 'automation',
     path: 'AUTOMATION',
-    title: 'Automation & Intelligent Ops',
-    roles: ['RPA Developer', 'Automation Architect', 'Workflow Lead'],
-    skills: ['UiPath', 'Blue Prism', 'Process Mapping', 'AI Integration'],
-    outlook: 'High efficiency gains across enterprise sectors.',
+    title: 'Automation & RPA',
+    roles: ['RPA Developer', 'Automation Architect', 'Intelligent Ops Lead'],
+    skills: ['UiPath', 'Blue Prism', 'Process Mapping', 'AI Workflow Integration'],
+    outlook: 'Intelligent operations are the key to organizational efficiency.',
     icon: 'fa-robot',
     color: 'text-orange-400',
     learningUrl: 'https://www.uipath.com/learning/academy',
@@ -149,19 +155,20 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Advanced', name: 'ITIL 4 Foundation', url: 'https://www.axelos.com/certifications/itil-service-management/itil-4-foundation' }
     ],
     roadmap: [
-      { title: 'Process Mapping', details: 'Business logic and process flow design.' },
-      { title: 'RPA Tooling', details: 'Hands-on with UiPath or Automation Anywhere.' },
-      { title: 'AI Integration', details: 'Adding Document AI and ML to workflows.' },
-      { title: 'DevOps for Automation', details: 'Testing and deploying automation scripts.' }
+      { title: 'Business Mapping', details: 'Documenting business processes and logic.' },
+      { title: 'RPA Tooling', details: 'Scripting with UiPath or Automation Anywhere.' },
+      { title: 'AI Integration', details: 'Merging ML models with RPA workflows.' },
+      { title: 'DevOps for Automation', details: 'Scaling scripts in production envs.' },
+      { title: 'Live Projects', details: 'End-to-end automation deployments.' }
     ]
   },
   {
     id: 'quantum',
     path: 'QUANTUM',
     title: 'Quantum Computing',
-    roles: ['Quantum Researcher', 'Quantum Developer', 'Algorithmist'],
-    skills: ['Qubits', 'Qiskit', 'Cirq', 'Quantum Physics', 'Linear Algebra'],
-    outlook: 'The next computational frontier; specialized niche.',
+    roles: ['Quantum Algorithmist', 'Quantum Engineer', 'R&D Specialist'],
+    skills: ['Qubits', 'Qiskit', 'Cirq', 'Quantum Physics', 'Quantum Information'],
+    outlook: 'Emerging highly-specialized space for R&D leadership.',
     icon: 'fa-atom',
     color: 'text-indigo-400',
     learningUrl: 'https://qiskit.org/learn',
@@ -171,19 +178,20 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Advanced', name: 'Qiskit Developer Certification', url: 'https://www.ibm.com/training/certification/C0010300' }
     ],
     roadmap: [
-      { title: 'Physics & Algebra', details: 'Quantum mechanics and complex vector spaces.' },
-      { title: 'Quantum Information', details: 'Qubits, entanglement, and gates.' },
-      { title: 'Quantum Algorithms', details: 'Grover, Shor, and VQE.' },
-      { title: 'Hands-on Coding', details: 'Qiskit, Cirq, and cloud quantum hardware.' }
+      { title: 'Physics & Algebra', details: 'Quantum mechanics and linear algebra.' },
+      { title: 'Information & Qubits', details: 'Qubit behavior and entanglement.' },
+      { title: 'Quantum Algorithms', details: 'Grover, Shor, and hybrid algorithms.' },
+      { title: 'Hands-on Coding', details: 'Using Qiskit / Cirq on Azure Quantum.' },
+      { title: 'Applied Projects', details: 'Real-world quantum simulation testing.' }
     ]
   },
   {
     id: 'emerging',
     path: 'EMERGING',
-    title: 'Emerging (Web3/AR/IoT)',
-    roles: ['Blockchain Dev', 'AR/VR Engineer', 'IoT Architect'],
-    skills: ['Solidity', 'Unity', 'Embedded C', 'Spatial Design'],
-    outlook: 'Merging physical and digital worlds.',
+    title: 'Emerging (AR/VR/Web3/IoT)',
+    roles: ['Blockchain Dev', 'Spatial UX Designer', 'IoT Solutions Engineer'],
+    skills: ['Solidity', 'Unity/Unreal', 'Embedded C', 'Spatial Interaction Design'],
+    outlook: 'The next phase of physical-digital interaction.',
     icon: 'fa-vr-cardboard',
     color: 'text-pink-400',
     learningUrl: 'https://ethereum.org/en/developers/',
@@ -196,19 +204,19 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Advanced', name: 'AWS IoT Specialty', url: 'https://aws.amazon.com/certification/certified-iot-specialty/' }
     ],
     roadmap: [
-      { title: '3D Prototyping', details: 'Unity/Unreal modeling and spatial UX.' },
-      { title: 'Web3 & Smart Contracts', details: 'Solidity, DApps, and DeFi logic.' },
-      { title: 'IoT & Sensors', details: 'Embedded systems and networking.' },
-      { title: 'Security Audits', details: 'Auditing smart contracts and IoT devices.' }
+      { title: 'Spatial Computing', details: '3D modeling and immersive UX design.' },
+      { title: 'Blockchain & Smart Contracts', details: 'Solidity and DApps architecture.' },
+      { title: 'IoT & Edge AI', details: 'Embedded systems and sensor networking.' },
+      { title: 'Security Audits', details: 'Securing smart contracts and IoT nodes.' }
     ]
   },
   {
     id: 'ai-prod',
     path: 'AI_PRODUCT',
-    title: 'AI Product & Management',
-    roles: ['AI Product Manager', 'Compliance Officer', 'Strategic Lead'],
-    skills: ['Agile', 'AI Ethics', 'Roadmapping', 'Lifecycle Management'],
-    outlook: 'Bridging technical AI with business value.',
+    title: 'AI Product & Governance',
+    roles: ['AI Product Manager', 'Compliance Specialist', 'Strategic AI Lead'],
+    skills: ['Agile', 'AI Lifecycle', 'Ethics', 'Compliance', 'Product Roadmapping'],
+    outlook: 'Crucial hybrid role bridging AI tech with business strategy.',
     icon: 'fa-box-open',
     color: 'text-amber-400',
     learningUrl: 'https://www.productschool.com/blog/product-management-2/the-ultimate-ai-product-manager-guide',
@@ -218,16 +226,16 @@ export const LEARNING_PATHS: LearningModule[] = [
       { level: 'Advanced', name: 'Certified Scrum Product Owner (CSPO)', url: 'https://www.scrumalliance.org/get-certified/product-owner-track/cspo' }
     ],
     roadmap: [
-      { title: 'Product Strategy', details: 'Market analysis and AI roadmaps.' },
+      { title: 'Product Strategy', details: 'Roadmapping and market-fit analysis.' },
       { title: 'AI Lifecycle', details: 'From model design to production monitoring.' },
-      { title: 'Ethics & Compliance', details: 'Bias, safety, and regulatory alignment.' },
-      { title: 'Stakeholder Alignment', details: 'Translating AI value to business metrics.' }
+      { title: 'Ethics & Compliance', details: 'Governance and bias mitigation.' },
+      { title: 'Go-to-Market', details: 'Scaling AI products for global impact.' }
     ]
   },
   {
     id: 'hardware',
     path: 'HARDWARE',
-    title: 'Hardware & Semi Engineering',
+    title: 'Hardware & Semiconductors',
     roles: ['ASIC Designer', 'FPGA Engineer', 'HPC Architect'],
     skills: ['VLSI', 'Digital Logic', 'HPC', 'Parallel Compute', 'Verilog'],
     outlook: 'The physical backbone of the AI era.',
