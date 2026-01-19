@@ -25,6 +25,18 @@ export interface RoadmapStep {
   details: string;
 }
 
+export interface CurriculumTopic {
+  title: string;
+  items: string[];
+}
+
+export interface CurriculumTerm {
+  term: string;
+  duration: string;
+  title: string;
+  modules: CurriculumTopic[];
+}
+
 export interface LearningModule {
   id: string;
   title: string;
@@ -47,6 +59,7 @@ export interface InternshipTrack {
   icon: string;
   color: string;
   roadmap: string[];
+  curriculum?: CurriculumTerm[];
 }
 
 export interface Project {

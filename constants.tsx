@@ -1,5 +1,5 @@
 
-import { LearningModule, FirebaseStrategy, ExternalResource, InternshipTrack } from './types';
+import { LearningModule, FirebaseStrategy, ExternalResource, InternshipTrack, CurriculumTerm } from './types';
 
 export const EXTERNAL_RESOURCES: ExternalResource[] = [
   // AI Platforms
@@ -33,51 +33,236 @@ export const EXTERNAL_RESOURCES: ExternalResource[] = [
   { id: 'ibm-skillsbuild', name: 'IBM SkillsBuild', url: 'https://skillsbuild.org/', description: 'Industry-aligned AI and Business Analytics projects.', category: 'RESEARCH', icon: 'fa-briefcase' }
 ];
 
+const FULL_SKYLINE_CURRICULUM: CurriculumTerm[] = [
+  {
+    term: 'Term 1',
+    duration: '2 Months',
+    title: 'Python for GenAI',
+    modules: [
+      {
+        title: 'Core Python',
+        items: [
+          'Variables: Dynamic reassign, naming conventions',
+          'Numeric types: int, float, complex',
+          'Collections: list, tuple, set, dict (Mutable vs Immutable)',
+          'Loops: for/while, range(), enumerate(), zip()',
+          'Functions: def/return, positional/keyword args, Lambda'
+        ]
+      },
+      {
+        title: 'Advanced Python',
+        items: [
+          'File Handling: open(), read(), write() for CSV/JSON',
+          'Regex: re.search(), re.findall(), re.sub() for log cleaning',
+          'Exceptional Handling: try, except, finally custom exceptions',
+          'OOPs: classes, __init__, Inheritance, Method overriding'
+        ]
+      },
+      {
+        title: 'Data & Viz Libraries',
+        items: [
+          'NumPy: Vectorized computations, indexing, slicing, broadcasting',
+          'Pandas: DataFrames, Cleaning (missing/duplicates), groupby',
+          'Matplotlib: Customizing line, bar, scatter, histograms',
+          'Seaborn: Boxplots, Heatmaps, correlation analysis'
+        ]
+      }
+    ]
+  },
+  {
+    term: 'Term 2',
+    duration: '3 Months',
+    title: 'Foundation For Gen AI',
+    modules: [
+      {
+        title: 'ML Fundamentals',
+        items: [
+          'Supervised vs Unsupervised learning paradigms',
+          'Features, labels, training, validation, and test sets',
+          'Bias–variance trade-off and model generalization',
+          'Overfitting and underfitting with real examples',
+          'End-to-end industrial ML workflow projects'
+        ]
+      },
+      {
+        title: 'Regression & Classification',
+        items: [
+          'Multiple Regression with feature interactions (RMSE, MAE, R²)',
+          'Logistic Regression for binary classification',
+          'Handling class imbalance using sampling techniques',
+          'Metrics: Precision, Recall, F1-Score, ROC-AUC'
+        ]
+      },
+      {
+        title: 'Deep Learning & NLP',
+        items: [
+          'Perceptron, Backpropagation, and Optimization',
+          'Attention Mechanism foundations',
+          'Text Pre-processing: BoW, TF-IDF, Word2Vec',
+          'NER, Topic Modeling (LDA/LSA), POS Tagging'
+        ]
+      },
+      {
+        title: 'Transformer – BERT Model',
+        items: [
+          'Encoder–Decoder blocks & Multi-head self-attention',
+          'Positional encoding concepts',
+          'BERT pre-training: MLM (Masked LM) and NSP',
+          'BERT use cases in real-world systems'
+        ]
+      }
+    ]
+  },
+  {
+    term: 'Term 3',
+    duration: '3 Months',
+    title: 'Generative AI',
+    modules: [
+      {
+        title: 'Diffusion & GANs',
+        items: ['Image Generation models', 'Stable Diffusion internals', 'GAN architectures']
+      },
+      {
+        title: 'Large Language Models',
+        items: ['Zero-shot vs Few-shot prompting', 'RAG (Retrieval Augmented Generation)', 'Vector DB integration']
+      }
+    ]
+  },
+  {
+    term: 'Term 4',
+    duration: '1.5 Months',
+    title: 'Agentic AI',
+    modules: [
+      {
+        title: 'Autonomous Agents',
+        items: ['Agent Reasoning (Chain of Thought)', 'Multi-agent orchestration frameworks', 'Self-correcting agents']
+      },
+      {
+        title: 'Tools & Actions',
+        items: ['Function Calling mastery', 'Agent memory persistence', 'Browser automation for agents']
+      }
+    ]
+  },
+  {
+    term: 'Term 5',
+    duration: '1 Month',
+    title: 'Statistics & Foundation of DS',
+    modules: [
+      {
+        title: 'Statistical Inference',
+        items: ['Descriptive vs Inferential stats', 'Hypothesis Testing & p-values', 'Probability Distributions']
+      }
+    ]
+  },
+  {
+    term: 'Term 6',
+    duration: '3 Months',
+    title: 'Advanced Data Science',
+    modules: [
+      {
+        title: 'Big Data Feature Engineering',
+        items: ['Handling high-cardinality features', 'Dimensionality reduction (PCA/t-SNE)', 'Advanced Time Series analysis']
+      }
+    ]
+  },
+  {
+    term: 'Term 7',
+    duration: '1 Month',
+    title: 'Deployment & MLOps',
+    modules: [
+      {
+        title: 'Model Lifecycle',
+        items: ['Dockerizing models', 'Cloud serving (Vertex AI/SageMaker)', 'Model Drift monitoring']
+      }
+    ]
+  },
+  {
+    term: 'Term 8',
+    duration: '1.5 Months',
+    title: 'Data Analytics & Viz Tools',
+    modules: [
+      {
+        title: 'BI Engineering',
+        items: ['Power BI advanced DAX', 'Tableau interactive dashboards', 'Storytelling with data']
+      }
+    ]
+  },
+  {
+    term: 'Term 9',
+    duration: '2 Months',
+    title: 'DATA BASE MANAGEMENT SYSTEM',
+    modules: [
+      {
+        title: 'Enterprise SQL & NoSQL',
+        items: ['Complex Query Optimization', 'PostgreSQL for AI workloads', 'NoSQL (MongoDB/Firestore)']
+      }
+    ]
+  },
+  {
+    term: 'Term 10',
+    duration: '1 Month',
+    title: 'Big Data Analytics',
+    modules: [
+      {
+        title: 'Distributed Systems',
+        items: ['Apache Spark with PySpark', 'Hadoop ecosystem foundations', 'Real-time streaming (Kafka)']
+      }
+    ]
+  },
+  {
+    term: 'Term 11',
+    duration: '1 Month',
+    title: 'DSA (Optional)',
+    modules: [
+      {
+        title: 'Algorithmic Engineering',
+        items: ['Tree and Graph traversals', 'Dynamic Programming patterns', 'Big O Analysis']
+      }
+    ]
+  },
+  {
+    term: 'Term 12',
+    duration: 'Skills & Tools',
+    title: 'Project Management',
+    modules: [
+      {
+        title: 'Agile & Execution',
+        items: ['Jira for Engineering teams', 'Scrum methodology', 'Technical Leadership skills']
+      }
+    ]
+  }
+];
+
 export const INTERNSHIP_TRACKS: InternshipTrack[] = [
   {
     id: 'agentic-ai',
     title: 'Agentic AI Engineer',
-    description: 'Master LLM orchestration, RAG, and multi-agent workflows using live inference platforms.',
+    description: 'The complete 24-month journey from Python foundations to multi-agent deployment architectures.',
     platforms: ['google-ai-studio', 'huggingface', 'langchain', 'kaggle'],
     icon: 'fa-brain-circuit',
     color: 'text-purple-400',
-    roadmap: ['Prompt Engineering in AI Studio', 'Deploying Models on HF Spaces', 'Building RAG with LangChain', 'Optimizing on Kaggle']
+    roadmap: ['Python Mastery', 'ML Foundations', 'GenAI Architectures', 'Agentic Deployments'],
+    curriculum: FULL_SKYLINE_CURRICULUM
   },
   {
     id: 'devops-sre',
     title: 'Cloud DevOps & SRE',
-    description: 'Infrastructure as code, CI/CD, and global scale operations in real cloud environments.',
+    description: 'Focusing on Term 7/9/10 expertise: Infrastructure as code and global scale operations.',
     platforms: ['aws-skill-builder', 'gcp-skills-boost', 'github-actions', 'replit'],
     icon: 'fa-server',
     color: 'text-blue-400',
-    roadmap: ['Cloud Fundamentals (AWS/GCP)', 'Docker & K8s Labs', 'GitHub Actions Pipelines', 'Deploying Live Microservices']
-  },
-  {
-    id: 'cyber-trust',
-    title: 'Cybersecurity Analyst',
-    description: 'Offensive and defensive security training using browser-based wargames.',
-    platforms: ['tryhackme', 'overthewire', 'github-actions'],
-    icon: 'fa-shield-halved',
-    color: 'text-red-400',
-    roadmap: ['Linux CLI Mastery', 'Network Vulnerability Labs', 'Web Application Pentesting', 'Security Auditing Automation']
-  },
-  {
-    id: 'fullstack-dev',
-    title: 'Modern Full-Stack Architect',
-    description: 'Building and deploying complete web applications with zero-config cloud tools.',
-    platforms: ['freecodecamp', 'replit', 'codesandbox', 'github-actions'],
-    icon: 'fa-layer-group',
-    color: 'text-cyan-400',
-    roadmap: ['Responsive Frontend (FCC)', 'Node/Python Backend (Replit)', 'API Integrations', 'Vercel/Hosting Deployments']
+    roadmap: ['Cloud Fundamentals', 'Docker & K8s', 'Managed CI/CD', 'Observability'],
+    curriculum: FULL_SKYLINE_CURRICULUM.filter((_, i) => [0, 6, 8, 9].includes(i))
   },
   {
     id: 'ba-automation',
-    title: 'Business AI & Automation',
-    description: 'Bridging technical logic with business data and RPA automation.',
+    title: 'Business AI & Data Analyst',
+    description: 'Focusing on Term 5/8/9/12 expertise: Data storytelling and automated intelligence.',
     platforms: ['uipath', 'ms-learn', 'ibm-skillsbuild', 'kaggle'],
     icon: 'fa-chart-pie',
     color: 'text-emerald-400',
-    roadmap: ['Data Analytics Foundations', 'Power BI Dashboards', 'RPA Bot Development', 'AI Business Strategy']
+    roadmap: ['Data Foundations', 'Power BI Mastery', 'RPA Logic', 'Project Lifecycle'],
+    curriculum: FULL_SKYLINE_CURRICULUM.filter((_, i) => [0, 4, 7, 8, 11].includes(i))
   }
 ];
 
@@ -95,111 +280,28 @@ export const LEARNING_PATHS: LearningModule[] = [
     certifications: [
       { level: 'Foundational', name: 'Google Cloud ML Engineer', url: 'https://cloud.google.com/certifications/machine-learning-engineer' },
       { level: 'Intermediate', name: 'AWS Machine Learning – Specialty', url: 'https://aws.amazon.com/certification/certified-machine-learning-specialty/' },
-      { level: 'Advanced', name: 'DeepLearning.AI TensorFlow / GenAI', url: 'https://www.deeplearning.ai/courses/generative-ai-with-llms/' },
-      { level: 'Advanced', name: 'NVIDIA DLI: LLMs and Transformers', url: 'https://www.nvidia.com/en-us/training/' }
+      { level: 'Advanced', name: 'DeepLearning.AI TensorFlow / GenAI', url: 'https://www.deeplearning.ai/courses/generative-ai-with-llms/' }
     ],
     roadmap: [
-      { title: 'Foundations & Deep Learning', details: 'Linear algebra, backpropagation, CNNs, RNNs, and PyTorch/TensorFlow internals.' },
-      { title: 'Generative AI & LLMs', details: 'Transformer architectures, Attention mechanisms, BERT/GPT lineage, and Tokenization.' },
-      { title: 'Prompt Engineering & RAG', details: 'Context injection, Retrieval Augmented Generation (RAG), and Vector Databases (Pinecone, Weaviate).' },
-      { title: 'LLM Fine-tuning & RLHF', details: 'PEFT (LoRA, QLoRA), Reinforcement Learning from Human Feedback (RLHF), and Quantization.' },
-      { title: 'MLOps & Deployment', details: 'CI/CD for ML, Model monitoring, Data drift detection, and serving with TFX or TorchServe.' }
+      { title: 'Foundations & Deep Learning', details: 'Linear algebra, backpropagation, CNNs, RNNs, and PyTorch internals.' },
+      { title: 'Generative AI & LLMs', details: 'Transformer architectures, Attention mechanisms, and Tokenization.' }
     ]
   },
   {
     id: 'soft-eng',
     path: 'SOFT_ENG',
     title: 'Software & Systems Eng.',
-    roles: ['Senior Full-Stack Developer', 'Backend Architect', 'Node.js Specialist', 'Frontend Engineer'],
-    skills: ['Node.js', 'Browser APIs', 'TypeScript', 'LeetCode Mastery', 'HackerRank Prep', 'Microservices', 'CI/CD'],
+    roles: ['Senior Full-Stack Developer', 'Backend Architect', 'Node.js Specialist'],
+    skills: ['Node.js', 'Browser APIs', 'TypeScript', 'LeetCode Mastery', 'HackerRank Prep'],
     outlook: 'Fundamental demand for high-performance engineers with algorithmic proficiency.',
     icon: 'fa-code-pull-request',
     color: 'text-cyan-400',
     learningUrl: 'https://roadmap.sh/full-stack',
     certifications: [
-      { level: 'Foundational', name: 'AWS Certified Developer Associate', url: 'https://aws.amazon.com/certification/certified-developer-associate/' },
-      { level: 'Intermediate', name: 'Node.js Application Developer (LFNAD)', url: 'https://training.linuxfoundation.org/certification/jsnad/' },
-      { level: 'Advanced', name: 'Meta Full-Stack Engineer', url: 'https://www.coursera.org/professional-certificates/meta-full-stack-engineer' },
-      { level: 'Advanced', name: 'Google Professional DevOps Engineer', url: 'https://cloud.google.com/certifications/devops-engineer' }
+      { level: 'Foundational', name: 'AWS Certified Developer Associate', url: 'https://aws.amazon.com/certification/certified-developer-associate/' }
     ],
     roadmap: [
-      { title: 'Algorithmic Mastery (LeetCode/HackerRank)', details: 'Data structures, Dynamic Programming, and Graph theory for high-tier technical interviews.' },
-      { title: 'Modern Full-stack (Browser/Node)', details: 'DOM manipulation, Browser rendering engines, and high-concurrency Node.js event-loop optimization.' },
-      { title: 'System Design & Architecture', details: 'Scalability, Load Balancing, Caching strategies, and Distributed Systems fundamentals.' },
-      { title: 'DevOps & SRE', details: 'CI/CD pipelines, Docker, Kubernetes, and full-stack observability with Grafana.' },
-      { title: 'Platform Engineering', details: 'Building Internal Developer Portals (IDPs) and self-service infrastructure.' }
-    ]
-  },
-  {
-    id: 'cloud',
-    path: 'CLOUD',
-    title: 'Cloud & Architecture',
-    roles: ['Cloud Architect', 'Hybrid Cloud Engineer', 'Multi-cloud Consultant'],
-    skills: ['Multi-cloud', 'Hybrid Cloud', 'Kubernetes', 'Terraform', 'Anthos', 'Azure Arc'],
-    outlook: 'Enterprise demand shifting from "Cloud First" to "Sovereign Multi-cloud".',
-    icon: 'fa-cloud-word',
-    color: 'text-blue-400',
-    learningUrl: 'https://aws.amazon.com/training/',
-    certifications: [
-      { level: 'Foundational', name: 'AWS Cloud Practitioner', url: 'https://aws.amazon.com/certification/certified-cloud-practitioner/' },
-      { level: 'Intermediate', name: 'HashiCorp Certified: Terraform Associate', url: 'https://www.hashicorp.com/certification/terraform-associate' },
-      { level: 'Advanced', name: 'Certified Kubernetes Administrator (CKA)', url: 'https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/' },
-      { level: 'Advanced', name: 'AWS Solutions Architect Professional', url: 'https://aws.amazon.com/certification/certified-solutions-architect-professional/' }
-    ],
-    roadmap: [
-      { title: 'Infrastructure as Code (IaC)', details: 'Mastering Terraform and Pulumi for multi-provider (AWS, GCP, Azure) provisioning.' },
-      { title: 'Kubernetes & Service Mesh', details: 'Cluster orchestration (EKS/GKE/AKS) and Istio for traffic management and security.' },
-      { title: 'Multi-cloud & Hybrid patterns', details: 'Workload portability with containers, Anthos (GCP), and Azure Arc for on-prem management.' },
-      { title: 'Cloud Networking & DNS', details: 'Direct Connect, ExpressRoute, and global load balancing across regions.' },
-      { title: 'FinOps & Governance', details: 'Cost attribution, automated scaling policies, and cross-cloud tagging strategies.' }
-    ]
-  },
-  {
-    id: 'cyber',
-    path: 'CYBERSECURITY',
-    title: 'Cybersecurity & Trust',
-    roles: ['Zero Trust Architect', 'Incident Responder', 'Security Engineer'],
-    skills: ['Zero Trust', 'Incident Response', 'Cloud Security', 'IAM', 'SOAR', 'EDR'],
-    outlook: 'Critical focus on "Trust but Verify" architectures and automated response.',
-    icon: 'fa-shield-halved',
-    color: 'text-red-400',
-    learningUrl: 'https://www.comptia.org/certifications/security',
-    certifications: [
-      { level: 'Foundational', name: 'CompTIA Security+', url: 'https://www.comptia.org/certifications/security' },
-      { level: 'Intermediate', name: 'Certified Ethical Hacker (CEH)', url: 'https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/' },
-      { level: 'Advanced', name: 'OSCP (Penetration Testing)', url: 'https://www.offsec.com/courses/pen-200/' },
-      { level: 'Advanced', name: 'ISC2 CISSP', url: 'https://www.isc2.org/Certifications/CISSP' }
-    ],
-    roadmap: [
-      { title: 'Zero Trust Architecture', details: 'Identity-first security, micro-segmentation, and continuous authorization principles.' },
-      { title: 'Cloud Security Posture (CSPM)', details: 'Securing serverless, containers, and multi-tenant cloud environments.' },
-      { title: 'Incident Response & Forensics', details: 'Phases of IR: Preparation, Identification, Containment, Eradication, and Recovery.' },
-      { title: 'SOC & SOAR', details: 'Security Operations Centers and Security Orchestration, Automation, and Response (SOAR).' },
-      { title: 'Advanced Threat Hunting', details: 'Using SIEM/EDR data to proactively find hidden adversarial presence.' }
-    ]
-  },
-  {
-    id: 'data',
-    path: 'DATA_ANALYTICS',
-    title: 'Data & Real-time Insights',
-    roles: ['Big Data Engineer', 'Real-time Analyst', 'Data Architect'],
-    skills: ['Big Data', 'Real-time Analytics', 'Spark', 'Kafka', 'Snowflake', 'Dremio'],
-    outlook: 'Transitioning from batch processing to real-time event-driven architectures.',
-    icon: 'fa-database',
-    color: 'text-emerald-400',
-    learningUrl: 'https://grow.google/certificates/data-analytics/',
-    certifications: [
-      { level: 'Foundational', name: 'Google Data Analytics Certificate', url: 'https://grow.google/certificates/data-analytics/' },
-      { level: 'Intermediate', name: 'Snowflake SnowPro Core', url: 'https://www.snowflake.com/en/data-cloud/certifications/' },
-      { level: 'Advanced', name: 'Databricks Data Engineer Professional', url: 'https://www.databricks.com/learn/certification' },
-      { level: 'Advanced', name: 'Confluent Certified Developer for Apache Kafka', url: 'https://www.confluent.io/certification/' }
-    ],
-    roadmap: [
-      { title: 'Modern Data Warehousing', details: 'Cloud-native storage (Snowflake/BigQuery) and Lakehouse architectures (Databricks).' },
-      { title: 'Streaming & Real-time Processing', details: 'Apache Kafka, Flink, and Spark Streaming for low-latency data pipelines.' },
-      { title: 'ETL/ELT Frameworks', details: 'dbt (data build tool), Airflow for orchestration, and modern ingestion tools.' },
-      { title: 'Big Data Governance', details: 'Data quality, lineage, and catalogs (Atlan, Alation, Amundsen).' },
-      { title: 'Advanced Visual Analytics', details: 'Real-time dashboards using Looker, Tableau, and custom D3.js apps.' }
+      { title: 'Algorithmic Mastery', details: 'Data structures, Dynamic Programming for high-tier technical interviews.' }
     ]
   }
 ];
@@ -208,25 +310,15 @@ export const FIREBASE_STRATEGIES: FirebaseStrategy[] = [
   {
     type: 'Hosting',
     title: 'Firebase Hosting (Static/SPA)',
-    benefits: [
-      'Rapid deployment to global CDN',
-      'Zero-config SSL',
-      'Optimized for SPAs (React/Vue/Angular)',
-      'No-cost custom domains'
-    ],
-    useCase: 'Best for documentation, landing pages, and pure client-side applications that leverage Firebase Auth and Firestore.',
+    benefits: ['Rapid deployment to global CDN', 'Zero-config SSL', 'Optimized for SPAs'],
+    useCase: 'Best for documentation, landing pages, and pure client-side applications.',
     docUrl: 'https://firebase.google.com/docs/hosting'
   },
   {
     type: 'AppHosting',
     title: 'Firebase App Hosting (Dynamic/SSR)',
-    benefits: [
-      'Next.js & Angular SSR native support',
-      'Unified CDN and Server-Side management',
-      'Direct GitHub integration with auto-builds',
-      'Scalable Google Cloud infrastructure'
-    ],
-    useCase: 'Essential for SEO-heavy sites, complex dashboards with server-side logic, and enterprise-grade dynamic web apps.',
+    benefits: ['Next.js & Angular SSR native support', 'Direct GitHub integration', 'Scalable Google Cloud infra'],
+    useCase: 'Essential for SEO-heavy sites and complex dashboards with server-side logic.',
     docUrl: 'https://firebase.google.com/docs/app-hosting'
   }
 ];
