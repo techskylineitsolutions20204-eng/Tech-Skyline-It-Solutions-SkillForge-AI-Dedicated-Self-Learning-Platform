@@ -7,30 +7,37 @@ export const EXTERNAL_RESOURCES: ExternalResource[] = [
   { id: 'huggingface', name: 'Hugging Face', url: 'https://huggingface.co/', description: 'Live demos via Spaces, Transformers, and free CPU inference.', category: 'ML_PLATFORM', icon: 'fa-face-smiling-hands' },
   { id: 'kaggle', name: 'Kaggle', url: 'https://www.kaggle.com/', description: 'Free GPU/CPU notebooks, Python, Pandas, and ML datasets.', category: 'ML_PLATFORM', icon: 'fa-microchip' },
   { id: 'langchain', name: 'LangChain', url: 'https://python.langchain.com/', description: 'Agent reasoning chains and tool-augmented AI frameworks.', category: 'ML_PLATFORM', icon: 'fa-link' },
+  { id: 'projectpro-pyspark', name: 'ProjectPro PySpark', url: 'https://www.projectpro.io/hadoop-tutorial/pyspark-machine-learning-tutorial', description: 'Real-world PySpark and Hadoop Machine Learning tutorials.', category: 'TUTORIAL', icon: 'fa-database' },
   
   // Cloud & DevOps
-  { id: 'aws-skill-builder', name: 'AWS Skill Builder', url: 'https://explore.skillbuilder.aws/', description: 'Free labs for Cloud fundamentals and DevOps tracks.', category: 'CLOUD_CONSOLE', icon: 'fa-aws' },
+  { id: 'aws-skill-builder', name: 'AWS Skill Builder', url: 'https://skillbuilder.aws/', description: 'Official AWS digital training and interactive labs.', category: 'CLOUD_CONSOLE', icon: 'fa-aws' },
   { id: 'gcp-skills-boost', name: 'Google Cloud Skills Boost', url: 'https://www.cloudskillsboost.google/', description: 'Real GCP console access for Docker, Kubernetes, and CI/CD.', category: 'CLOUD_CONSOLE', icon: 'fa-google' },
   { id: 'github-actions', name: 'GitHub Actions', url: 'https://github.com/features/actions', description: 'Free tier CI/CD DevOps pipelines and automation.', category: 'IDE', icon: 'fa-github' },
+  { id: 'greatlearning-devops', name: 'Great Learning DevOps', url: 'https://www.mygreatlearning.com/academy/learn-for-free/courses/foundations-of-devops-and-git', description: 'Foundations of DevOps and Git version control.', category: 'TUTORIAL', icon: 'fa-infinity' },
   
   // Full Stack & Sandboxes
   { id: 'freecodecamp', name: 'freeCodeCamp', url: 'https://www.freecodecamp.org/', description: 'Browser-based IDE and Full-stack project-based certifications.', category: 'INTERACTIVE_LAB', icon: 'fa-fire' },
+  { id: 'greatlearning-webdev', name: 'Great Learning Web Dev', url: 'https://www.mygreatlearning.com/web-development/free-courses', description: 'Comprehensive free courses for modern web development.', category: 'TUTORIAL', icon: 'fa-globe' },
   { id: 'replit', name: 'Replit', url: 'https://replit.com/', description: 'Live deployable apps for both Backend and Frontend.', category: 'SANDBOX', icon: 'fa-code' },
   { id: 'codesandbox', name: 'CodeSandbox', url: 'https://codesandbox.io/', description: 'React/Next.js live previews and API integration.', category: 'SANDBOX', icon: 'fa-box-open' },
+  { id: 'besant-node', name: 'Besant Node.js', url: 'https://www.besanttechnologies.com/node-js-tutorial', description: 'Professional Node.js and backend engineering tutorial.', category: 'TUTORIAL', icon: 'fa-brands fa-node-js' },
+  
+  // Python & Learning
+  { id: 'codecademy-python', name: 'Codecademy Python', url: 'https://www.codecademy.com/learn/learn-python', description: 'Interactive Python coding environment for beginners.', category: 'TUTORIAL', icon: 'fa-brands fa-python' },
+  { id: 'cs-circles', name: 'CS Circles', url: 'https://cs.courses/cs-circles/', description: 'Excellent Python problem-solving and logic platform.', category: 'TUTORIAL', icon: 'fa-circle-dot' },
+  { id: 'codecademy-git', name: 'Codecademy Git', url: 'https://www.codecademy.com/learn/learn-git', description: 'Mastering version control with Git and GitHub.', category: 'TUTORIAL', icon: 'fa-code-branch' },
+  { id: 'codecademy-catalog', name: 'Codecademy Catalog', url: 'https://www.codecademy.com/catalog', description: 'Extensive library of interactive tech courses.', category: 'TUTORIAL', icon: 'fa-book-open' },
   
   // Cyber & Sec
+  { id: 'codecademy-cyber', name: 'Codecademy Cybersecurity', url: 'https://www.codecademy.com/learn/paths/cybersecurity', description: 'Structured path for modern cybersecurity fundamentals.', category: 'SEC_LAB', icon: 'fa-user-secret' },
   { id: 'tryhackme', name: 'TryHackMe', url: 'https://tryhackme.com/', description: 'Browser-based labs for Red Team and Blue Team security.', category: 'SEC_LAB', icon: 'fa-shield-virus' },
-  { id: 'overthewire', name: 'OverTheWire', url: 'https://overthewire.org/', description: 'Linux and security wargames for terminal mastery.', category: 'SEC_LAB', icon: 'fa-user-secret' },
   
-  // Hardware & IoT
-  { id: 'wokwi', name: 'Wokwi', url: 'https://wokwi.com/', description: 'Arduino and ESP32 simulation with real firmware logic.', category: 'IOT_SIM', icon: 'fa-microchip' },
-  { id: 'tinkercad', name: 'Tinkercad', url: 'https://www.tinkercad.com/', description: 'IoT circuit simulation and 3D design for beginners.', category: 'IOT_SIM', icon: 'fa-plug' },
+  // BI & Automation
+  { id: 'ms-powerbi', name: 'Microsoft Power BI', url: 'https://learn.microsoft.com/en-us/training/powerplatform/power-bi', description: 'Official Power BI training for data visualization.', category: 'TUTORIAL', icon: 'fa-chart-column' },
+  { id: 'uipath-academy', name: 'UiPath Academy', url: 'https://academy.uipath.com/', description: 'The gold standard for Robotic Process Automation (RPA) training.', category: 'INTERACTIVE_LAB', icon: 'fa-robot' },
   
-  // BA & Automation
-  { id: 'uipath', name: 'UiPath Community', url: 'https://www.uipath.com/community', description: 'Free edition for real enterprise desktop automation.', category: 'INTERACTIVE_LAB', icon: 'fa-robot' },
-  { id: 'robocorp', name: 'Robocorp', url: 'https://robocorp.com/', description: 'Python-based RPA and open-source software bots.', category: 'IDE', icon: 'fa-gears' },
-  { id: 'ms-learn', name: 'Microsoft Learn', url: 'https://learn.microsoft.com/', description: 'Free Power BI labs and official learning paths.', category: 'TUTORIAL', icon: 'fa-microsoft' },
-  { id: 'ibm-skillsbuild', name: 'IBM SkillsBuild', url: 'https://skillsbuild.org/', description: 'Industry-aligned AI and Business Analytics projects.', category: 'RESEARCH', icon: 'fa-briefcase' }
+  // Research & Resources
+  { id: 'avinash-certificates', name: 'GitHub Free Certificates', url: 'https://github.com/avinash201199/Free-courses-with-Certificates', description: 'Exhaustive list of high-quality free tech courses with certificates.', category: 'RESEARCH', icon: 'fa-award' }
 ];
 
 const FULL_SKYLINE_CURRICULUM: CurriculumTerm[] = [
@@ -267,6 +274,29 @@ export const INTERNSHIP_TRACKS: InternshipTrack[] = [
 ];
 
 export const LEARNING_PATHS: LearningModule[] = [
+  {
+    id: 'skillforge-foundation',
+    path: 'FOUNDATION',
+    title: 'SkillForge 6-Week Fast-Track',
+    roles: ['Junior Developer', 'Data Associate', 'Cloud Assistant'],
+    skills: ['Python', 'Git', 'Web Dev', 'AWS', 'Data Viz', 'Cybersecurity'],
+    outlook: 'Entry-level mastery in modern engineering fundamentals.',
+    icon: 'fa-rocket',
+    color: 'text-amber-500',
+    learningUrl: 'https://www.codecademy.com/catalog',
+    certifications: [
+      { level: 'Foundational', name: 'Codecademy Python & Git', url: 'https://www.codecademy.com/learn/learn-python' },
+      { level: 'Foundational', name: 'SkillBuilder Cloud Practitioner', url: 'https://skillbuilder.aws/' }
+    ],
+    roadmap: [
+      { week: 'Week 1', title: 'Python & Git Foundations', details: 'Learn Python basics, scripting, and Git version control.', skills: 'Python syntax, data types, Git, GitHub', effort: '20 hours' },
+      { week: 'Week 2', title: 'Web Development (HTML/CSS/JS)', details: 'Build responsive websites using core frontend technologies.', skills: 'HTML5, CSS3, JavaScript', effort: '20 hours' },
+      { week: 'Week 3', title: 'Backend Development (Node & Python)', details: 'Develop backend APIs and server-side logic.', skills: 'Node.js, Express, Python backend', effort: '20 hours' },
+      { week: 'Week 4', title: 'AWS & DevOps Fundamentals', details: 'Understand cloud computing and DevOps pipelines.', skills: 'AWS, CI/CD, Docker, DevOps basics', effort: '20 hours' },
+      { week: 'Week 5', title: 'Data Science & Power BI', details: 'Analyze data and build BI dashboards.', skills: 'Python Data Science, Power BI', effort: '20 hours' },
+      { week: 'Week 6', title: 'Cybersecurity & RPA', details: 'Learn security fundamentals and automation workflows.', skills: 'Cybersecurity basics, RPA, UiPath', effort: '20 hours' }
+    ]
+  },
   {
     id: 'ai-ml',
     path: 'AI_ML',

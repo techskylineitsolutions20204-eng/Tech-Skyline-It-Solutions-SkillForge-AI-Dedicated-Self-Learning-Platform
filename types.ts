@@ -12,7 +12,8 @@ export type TechPath =
   | 'HARDWARE'
   | 'DEVOPS'
   | 'RPA'
-  | 'QA';
+  | 'QA'
+  | 'FOUNDATION';
 
 export interface Certification {
   level: 'Foundational' | 'Intermediate' | 'Advanced';
@@ -23,6 +24,9 @@ export interface Certification {
 export interface RoadmapStep {
   title: string;
   details: string;
+  week?: string;
+  effort?: string;
+  skills?: string;
 }
 
 export interface CurriculumTopic {

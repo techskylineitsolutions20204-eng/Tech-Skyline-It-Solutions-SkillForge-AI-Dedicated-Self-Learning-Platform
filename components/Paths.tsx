@@ -42,8 +42,6 @@ const Paths: React.FC = () => {
     localStorage.setItem('skillforge_projects', JSON.stringify(next));
   };
 
-  const learningResources = EXTERNAL_RESOURCES.filter(r => r.category === 'TUTORIAL' || r.category === 'RESEARCH');
-
   return (
     <div className="max-w-7xl mx-auto space-y-12 pb-20">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -53,7 +51,7 @@ const Paths: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {LEARNING_PATHS.map((path) => (
           <div 
             key={path.id} 
@@ -172,15 +170,25 @@ const Paths: React.FC = () => {
 
                   <div className="bg-zinc-950/40 border border-zinc-800 p-8 sm:p-10 rounded-[3rem] space-y-8">
                      <h3 className="text-xs font-black uppercase tracking-[0.2em] text-emerald-500 flex items-center gap-2">
-                      <i className="fa-solid fa-route"></i> Career Blueprint (3-24 Months)
+                      <i className="fa-solid fa-route"></i> Career Blueprint (Roadmap)
                     </h3>
                     <div className="space-y-8 relative pl-6">
                       <div className="absolute left-0 top-2 bottom-2 w-0.5 bg-zinc-800"></div>
                       {selectedPath.roadmap.map((step, idx) => (
-                        <div key={idx} className="relative">
-                          <div className="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-zinc-900 border-2 border-emerald-500"></div>
-                          <h4 className="font-bold text-white text-base mb-1">{step.title}</h4>
-                          <p className="text-zinc-500 text-xs leading-relaxed">{step.details}</p>
+                        <div key={idx} className="relative group/step">
+                          <div className="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-zinc-900 border-2 border-emerald-500 group-hover/step:bg-emerald-500 transition-colors"></div>
+                          <div className="flex items-center justify-between mb-1">
+                            <h4 className="font-bold text-white text-base">{step.week ? `${step.week}: ` : ''}{step.title}</h4>
+                            {step.effort && <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest bg-zinc-800 px-2 py-0.5 rounded">{step.effort}</span>}
+                          </div>
+                          <p className="text-zinc-500 text-xs leading-relaxed mb-2">{step.details}</p>
+                          {step.skills && (
+                            <div className="flex flex-wrap gap-2">
+                              {step.skills.split(',').map(skill => (
+                                <span key={skill} className="text-[8px] font-bold text-blue-400/60 bg-blue-500/5 px-2 py-0.5 rounded border border-blue-500/10 uppercase">{skill.trim()}</span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
