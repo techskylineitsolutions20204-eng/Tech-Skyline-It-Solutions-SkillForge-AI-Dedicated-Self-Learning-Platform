@@ -12,6 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
     { id: 'home', label: 'Explore', icon: 'fa-compass' },
     { id: 'paths', label: 'Learning Paths', icon: 'fa-map-signs' },
     { id: 'internship', label: 'Industrial Syllabus', icon: 'fa-graduation-cap' },
+    { id: 'google-academy', label: 'Google Academy', icon: 'fa-google' },
     { id: 'labs', label: 'Hands-on Labs', icon: 'fa-flask' },
     { id: 'firebase', label: 'Architect Forge', icon: 'fa-diagram-project' },
   ];

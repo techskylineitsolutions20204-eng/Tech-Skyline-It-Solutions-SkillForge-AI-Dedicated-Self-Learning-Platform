@@ -7,6 +7,7 @@ import Internship from './components/Internship';
 import Labs from './components/Labs';
 import FirebaseArchitect from './components/FirebaseArchitect';
 import AIMentor from './components/AIMentor';
+import GoogleAcademy from './components/GoogleAcademy';
 
 // Context for global navigation across components
 interface NavContextType {
@@ -32,6 +33,8 @@ const App: React.FC = () => {
         return <Paths />;
       case 'internship':
         return <Internship />;
+      case 'google-academy':
+        return <GoogleAcademy />;
       case 'labs':
         return <Labs />;
       case 'firebase':
