@@ -9,7 +9,10 @@ export type TechPath =
   | 'QUANTUM' 
   | 'EMERGING' 
   | 'AI_PRODUCT' 
-  | 'HARDWARE';
+  | 'HARDWARE'
+  | 'DEVOPS'
+  | 'RPA'
+  | 'QA';
 
 export interface Certification {
   level: 'Foundational' | 'Intermediate' | 'Advanced';
@@ -34,6 +37,24 @@ export interface LearningModule {
   learningUrl: string;
   certifications: Certification[];
   roadmap: RoadmapStep[];
+}
+
+export interface InternshipTrack {
+  id: string;
+  title: string;
+  description: string;
+  platforms: string[]; // IDs of ExternalResource
+  icon: string;
+  color: string;
+  roadmap: string[];
+}
+
+export interface Project {
+  name: string;
+  repoUrl: string;
+  demoUrl?: string;
+  techStack: string;
+  description?: string;
 }
 
 export interface LabScenario {
@@ -78,7 +99,17 @@ export interface FirebaseStrategy {
   docUrl: string;
 }
 
-export type ResourceCategory = 'AI_ASSISTANT' | 'INTERACTIVE_LAB' | 'SANDBOX' | 'TUTORIAL' | 'IDE' | 'RESEARCH';
+export type ResourceCategory = 
+  | 'AI_ASSISTANT' 
+  | 'INTERACTIVE_LAB' 
+  | 'SANDBOX' 
+  | 'TUTORIAL' 
+  | 'IDE' 
+  | 'RESEARCH'
+  | 'CLOUD_CONSOLE'
+  | 'ML_PLATFORM'
+  | 'IOT_SIM'
+  | 'SEC_LAB';
 
 export interface ExternalResource {
   id: string;

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
 import Paths from './components/Paths';
+import Internship from './components/Internship';
 import Labs from './components/Labs';
 import FirebaseArchitect from './components/FirebaseArchitect';
 import AIMentor from './components/AIMentor';
@@ -16,6 +17,8 @@ const App: React.FC = () => {
         return <Dashboard />;
       case 'paths':
         return <Paths />;
+      case 'internship':
+        return <Internship />;
       case 'labs':
         return <Labs />;
       case 'firebase':

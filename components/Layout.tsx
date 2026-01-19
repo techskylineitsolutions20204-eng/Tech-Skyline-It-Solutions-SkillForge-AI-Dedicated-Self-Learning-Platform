@@ -11,6 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
   const navItems = [
     { id: 'home', label: 'Dashboard', icon: 'fa-house' },
     { id: 'paths', label: 'Learning Paths', icon: 'fa-route' },
+    { id: 'internship', label: 'Elite Internship', icon: 'fa-ranking-star' },
     { id: 'labs', label: 'Interactive Labs', icon: 'fa-terminal' },
     { id: 'firebase', label: 'Firebase Architect', icon: 'fa-fire' },
   ];

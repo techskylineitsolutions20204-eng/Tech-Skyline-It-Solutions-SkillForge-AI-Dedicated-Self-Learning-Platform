@@ -1,173 +1,83 @@
 
-import { LearningModule, FirebaseStrategy, ExternalResource } from './types';
+import { LearningModule, FirebaseStrategy, ExternalResource, InternshipTrack } from './types';
 
 export const EXTERNAL_RESOURCES: ExternalResource[] = [
-  // AI Tools That Write or Assist with Code
-  {
-    id: 'google-assist',
-    name: 'Google Gemini Code Assist',
-    url: 'https://codeassist.google/',
-    description: 'Free AI assistant for VS Code and JetBrains; generates code and helps debug.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-google'
-  },
-  {
-    id: 'vscode-agent',
-    name: 'VS Code (Agent Mode)',
-    url: 'https://code.visualstudio.com/',
-    description: 'Built-in free AI tools for multi-step code tasks and intelligent suggestions.',
-    category: 'IDE',
-    icon: 'fa-code'
-  },
-  {
-    id: 'workik',
-    name: 'Workik AI Generator',
-    url: 'https://workik.com/ai-code-generator',
-    description: 'Generate code in Python, JS, C++, etc., from natural language prompts.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-wand-magic-sparkles'
-  },
-  {
-    id: 'zzzcode',
-    name: 'ZZZ Code AI',
-    url: 'https://zzzcode.ai/code-generator',
-    description: 'Online form-based free AI code generator for rapid snippet creation.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-microchip-ai'
-  },
-  {
-    id: 'deepai',
-    name: 'DeepAI AI Code',
-    url: 'https://deepai.org/chat/ai-code',
-    description: 'AI tool that suggests snippets and explains complex code logic.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-brain-circuit'
-  },
-  {
-    id: 'cline',
-    name: 'Cline (Open Source)',
-    url: 'https://cline.bot/',
-    description: 'Model-agnostic AI coding assistant compatible with local or cloud LLMs.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-robot'
-  },
-  {
-    id: 'codegpt',
-    name: 'CodeGPT',
-    url: 'https://codegpt.co/',
-    description: 'Integrates AI models directly into VS Code using your own API keys.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-gear'
-  },
-  {
-    id: 'codeium',
-    name: 'Codeium',
-    url: 'https://codeium.com/',
-    description: 'Fast, free AI code suggestions and completions for individual developers.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-bolt'
-  },
+  // AI Platforms
+  { id: 'google-ai-studio', name: 'Google AI Studio', url: 'https://aistudio.google.com/', description: 'Live prompt execution, multi-agent workflows, and tool calling.', category: 'ML_PLATFORM', icon: 'fa-brain' },
+  { id: 'huggingface', name: 'Hugging Face', url: 'https://huggingface.co/', description: 'Live demos via Spaces, Transformers, and free CPU inference.', category: 'ML_PLATFORM', icon: 'fa-face-smiling-hands' },
+  { id: 'kaggle', name: 'Kaggle', url: 'https://www.kaggle.com/', description: 'Free GPU/CPU notebooks, Python, Pandas, and ML datasets.', category: 'ML_PLATFORM', icon: 'fa-microchip' },
+  { id: 'langchain', name: 'LangChain', url: 'https://python.langchain.com/', description: 'Agent reasoning chains and tool-augmented AI frameworks.', category: 'ML_PLATFORM', icon: 'fa-link' },
+  
+  // Cloud & DevOps
+  { id: 'aws-skill-builder', name: 'AWS Skill Builder', url: 'https://explore.skillbuilder.aws/', description: 'Free labs for Cloud fundamentals and DevOps tracks.', category: 'CLOUD_CONSOLE', icon: 'fa-aws' },
+  { id: 'gcp-skills-boost', name: 'Google Cloud Skills Boost', url: 'https://www.cloudskillsboost.google/', description: 'Real GCP console access for Docker, Kubernetes, and CI/CD.', category: 'CLOUD_CONSOLE', icon: 'fa-google' },
+  { id: 'github-actions', name: 'GitHub Actions', url: 'https://github.com/features/actions', description: 'Free tier CI/CD DevOps pipelines and automation.', category: 'IDE', icon: 'fa-github' },
+  
+  // Full Stack & Sandboxes
+  { id: 'freecodecamp', name: 'freeCodeCamp', url: 'https://www.freecodecamp.org/', description: 'Browser-based IDE and Full-stack project-based certifications.', category: 'INTERACTIVE_LAB', icon: 'fa-fire' },
+  { id: 'replit', name: 'Replit', url: 'https://replit.com/', description: 'Live deployable apps for both Backend and Frontend.', category: 'SANDBOX', icon: 'fa-code' },
+  { id: 'codesandbox', name: 'CodeSandbox', url: 'https://codesandbox.io/', description: 'React/Next.js live previews and API integration.', category: 'SANDBOX', icon: 'fa-box-open' },
+  
+  // Cyber & Sec
+  { id: 'tryhackme', name: 'TryHackMe', url: 'https://tryhackme.com/', description: 'Browser-based labs for Red Team and Blue Team security.', category: 'SEC_LAB', icon: 'fa-shield-virus' },
+  { id: 'overthewire', name: 'OverTheWire', url: 'https://overthewire.org/', description: 'Linux and security wargames for terminal mastery.', category: 'SEC_LAB', icon: 'fa-user-secret' },
+  
+  // Hardware & IoT
+  { id: 'wokwi', name: 'Wokwi', url: 'https://wokwi.com/', description: 'Arduino and ESP32 simulation with real firmware logic.', category: 'IOT_SIM', icon: 'fa-microchip' },
+  { id: 'tinkercad', name: 'Tinkercad', url: 'https://www.tinkercad.com/', description: 'IoT circuit simulation and 3D design for beginners.', category: 'IOT_SIM', icon: 'fa-plug' },
+  
+  // BA & Automation
+  { id: 'uipath', name: 'UiPath Community', url: 'https://www.uipath.com/community', description: 'Free edition for real enterprise desktop automation.', category: 'INTERACTIVE_LAB', icon: 'fa-robot' },
+  { id: 'robocorp', name: 'Robocorp', url: 'https://robocorp.com/', description: 'Python-based RPA and open-source software bots.', category: 'IDE', icon: 'fa-gears' },
+  { id: 'ms-learn', name: 'Microsoft Learn', url: 'https://learn.microsoft.com/', description: 'Free Power BI labs and official learning paths.', category: 'TUTORIAL', icon: 'fa-microsoft' },
+  { id: 'ibm-skillsbuild', name: 'IBM SkillsBuild', url: 'https://skillsbuild.org/', description: 'Industry-aligned AI and Business Analytics projects.', category: 'RESEARCH', icon: 'fa-briefcase' }
+];
 
-  // Interactive Coding Labs & Practice Platforms
+export const INTERNSHIP_TRACKS: InternshipTrack[] = [
   {
-    id: 'fcc',
-    name: 'freeCodeCamp',
-    url: 'https://www.freecodecamp.org/',
-    description: 'Comprehensive free coding lessons and project-based certifications.',
-    category: 'INTERACTIVE_LAB',
-    icon: 'fa-fire-flame-curved'
+    id: 'agentic-ai',
+    title: 'Agentic AI Engineer',
+    description: 'Master LLM orchestration, RAG, and multi-agent workflows using live inference platforms.',
+    platforms: ['google-ai-studio', 'huggingface', 'langchain', 'kaggle'],
+    icon: 'fa-brain-circuit',
+    color: 'text-purple-400',
+    roadmap: ['Prompt Engineering in AI Studio', 'Deploying Models on HF Spaces', 'Building RAG with LangChain', 'Optimizing on Kaggle']
   },
   {
-    id: 'codecademy',
-    name: 'Codecademy (Free Tier)',
-    url: 'https://www.codecademy.com/',
-    description: 'Browser-based lessons with an interactive integrated code editor.',
-    category: 'INTERACTIVE_LAB',
-    icon: 'fa-keyboard'
+    id: 'devops-sre',
+    title: 'Cloud DevOps & SRE',
+    description: 'Infrastructure as code, CI/CD, and global scale operations in real cloud environments.',
+    platforms: ['aws-skill-builder', 'gcp-skills-boost', 'github-actions', 'replit'],
+    icon: 'fa-server',
+    color: 'text-blue-400',
+    roadmap: ['Cloud Fundamentals (AWS/GCP)', 'Docker & K8s Labs', 'GitHub Actions Pipelines', 'Deploying Live Microservices']
   },
   {
-    id: 'sololearn',
-    name: 'SoloLearn',
-    url: 'https://www.sololearn.com/en/',
-    description: 'Hands-on courses and exercises with a mobile-friendly integrated editor.',
-    category: 'INTERACTIVE_LAB',
-    icon: 'fa-mobile-screen-button'
+    id: 'cyber-trust',
+    title: 'Cybersecurity Analyst',
+    description: 'Offensive and defensive security training using browser-based wargames.',
+    platforms: ['tryhackme', 'overthewire', 'github-actions'],
+    icon: 'fa-shield-halved',
+    color: 'text-red-400',
+    roadmap: ['Linux CLI Mastery', 'Network Vulnerability Labs', 'Web Application Pentesting', 'Security Auditing Automation']
   },
   {
-    id: 'codechef',
-    name: 'CodeChef Learn',
-    url: 'https://www.codechef.com/learn',
-    description: 'Free coding lessons focusing on competitive programming and problem solving.',
-    category: 'INTERACTIVE_LAB',
-    icon: 'fa-hat-wizard'
+    id: 'fullstack-dev',
+    title: 'Modern Full-Stack Architect',
+    description: 'Building and deploying complete web applications with zero-config cloud tools.',
+    platforms: ['freecodecamp', 'replit', 'codesandbox', 'github-actions'],
+    icon: 'fa-layer-group',
+    color: 'text-cyan-400',
+    roadmap: ['Responsive Frontend (FCC)', 'Node/Python Backend (Replit)', 'API Integrations', 'Vercel/Hosting Deployments']
   },
   {
-    id: 'cscircles',
-    name: 'CS Circles',
-    url: 'https://cscircles.cemc.uwaterloo.ca/',
-    description: 'Browser-based Python course with embedded coding challenges and auto-grading.',
-    category: 'INTERACTIVE_LAB',
-    icon: 'fa-circle-nodes'
-  },
-  {
-    id: 'codecombat',
-    name: 'CodeCombat',
-    url: 'https://codecombat.com/',
-    description: 'Learn Python and JavaScript through interactive games and challenges.',
-    category: 'INTERACTIVE_LAB',
-    icon: 'fa-gamepad'
-  },
-  {
-    id: 'edube',
-    name: 'Edube Interactive',
-    url: 'https://edube.org/',
-    description: 'Integrated programming environment with tutorials and structured practice.',
-    category: 'INTERACTIVE_LAB',
-    icon: 'fa-chalkboard-user'
-  },
-
-  // Online Compilers & Sandboxes
-  {
-    id: 'playcode',
-    name: 'PlayCode (JS/Python)',
-    url: 'https://playcode.io/',
-    description: 'Free JS/Python editor with live preview and an integrated AI assistant.',
-    category: 'SANDBOX',
-    icon: 'fa-play'
-  },
-  {
-    id: 'replit',
-    name: 'Replit',
-    url: 'https://replit.com/',
-    description: 'Powerful cloud IDE that runs nearly any language in the browser.',
-    category: 'SANDBOX',
-    icon: 'fa-cloud'
-  },
-  {
-    id: 'jdoodle',
-    name: 'JDoodle',
-    url: 'https://www.jdoodle.com/',
-    description: 'Lightweight online compiler and terminal for 76+ programming languages.',
-    category: 'SANDBOX',
-    icon: 'fa-terminal'
-  },
-
-  // Beginner Tutorials + Interactive Examples
-  {
-    id: 'learnpython',
-    name: 'LearnPython.org',
-    url: 'https://www.learnpython.org/',
-    description: 'Interactive Python tutorials with live code execution for beginners.',
-    category: 'TUTORIAL',
-    icon: 'fa-brands fa-python'
-  },
-  {
-    id: 'arxiv',
-    name: 'arXiv Research',
-    url: 'https://arxiv.org/abs/1209.2166',
-    description: 'Foundational research papers and scholarly articles for AI/ML mastery.',
-    category: 'RESEARCH',
-    icon: 'fa-book-open'
+    id: 'ba-automation',
+    title: 'Business AI & Automation',
+    description: 'Bridging technical logic with business data and RPA automation.',
+    platforms: ['uipath', 'ms-learn', 'ibm-skillsbuild', 'kaggle'],
+    icon: 'fa-chart-pie',
+    color: 'text-emerald-400',
+    roadmap: ['Data Analytics Foundations', 'Power BI Dashboards', 'RPA Bot Development', 'AI Business Strategy']
   }
 ];
 
