@@ -2,80 +2,86 @@
 import { LearningModule, FirebaseStrategy, ExternalResource } from './types';
 
 export const EXTERNAL_RESOURCES: ExternalResource[] = [
-  // IDE & Core Tools
+  // AI Tools That Write or Assist with Code
   {
-    id: 'vscode',
-    name: 'VS Code + AI',
+    id: 'google-assist',
+    name: 'Google Gemini Code Assist',
+    url: 'https://codeassist.google/',
+    description: 'Free AI assistant for VS Code and JetBrains; generates code and helps debug.',
+    category: 'AI_ASSISTANT',
+    icon: 'fa-google'
+  },
+  {
+    id: 'vscode-agent',
+    name: 'VS Code (Agent Mode)',
     url: 'https://code.visualstudio.com/',
-    description: 'Industry-standard IDE with built-in AI Agent Mode and copilot features.',
+    description: 'Built-in free AI tools for multi-step code tasks and intelligent suggestions.',
     category: 'IDE',
     icon: 'fa-code'
   },
   {
-    id: 'google-assist',
-    name: 'Google Code Assist',
-    url: 'https://codeassist.google/',
-    description: 'Enterprise AI assistant integrated into IDEs for code generation and debugging.',
+    id: 'workik',
+    name: 'Workik AI Generator',
+    url: 'https://workik.com/ai-code-generator',
+    description: 'Generate code in Python, JS, C++, etc., from natural language prompts.',
     category: 'AI_ASSISTANT',
-    icon: 'fa-google'
-  },
-  
-  // AI Assistants & Generators
-  {
-    id: 'codeium',
-    name: 'Codeium',
-    url: 'https://codeium.com/',
-    description: 'Ultra-fast free AI code autocomplete and chat for 70+ languages.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-bolt'
+    icon: 'fa-wand-magic-sparkles'
   },
   {
     id: 'zzzcode',
     name: 'ZZZ Code AI',
     url: 'https://zzzcode.ai/code-generator',
-    description: 'Free online form-based generator for logic snippets and unit tests.',
+    description: 'Online form-based free AI code generator for rapid snippet creation.',
     category: 'AI_ASSISTANT',
     icon: 'fa-microchip-ai'
   },
   {
-    id: 'workik',
-    name: 'Workik AI',
-    url: 'https://workik.com/ai-code-generator',
-    description: 'Prompt-to-code generator for full application structures and modules.',
-    category: 'AI_ASSISTANT',
-    icon: 'fa-wand-sparkles'
-  },
-  {
     id: 'deepai',
-    name: 'DeepAI Code',
+    name: 'DeepAI AI Code',
     url: 'https://deepai.org/chat/ai-code',
-    description: 'Conversational code logic explainer and translator.',
+    description: 'AI tool that suggests snippets and explains complex code logic.',
     category: 'AI_ASSISTANT',
     icon: 'fa-brain-circuit'
   },
   {
     id: 'cline',
-    name: 'Cline Bot',
+    name: 'Cline (Open Source)',
     url: 'https://cline.bot/',
-    description: 'Autonomous open-source AI coding agent for complex file manipulation.',
+    description: 'Model-agnostic AI coding assistant compatible with local or cloud LLMs.',
     category: 'AI_ASSISTANT',
     icon: 'fa-robot'
   },
+  {
+    id: 'codegpt',
+    name: 'CodeGPT',
+    url: 'https://codegpt.co/',
+    description: 'Integrates AI models directly into VS Code using your own API keys.',
+    category: 'AI_ASSISTANT',
+    icon: 'fa-gear'
+  },
+  {
+    id: 'codeium',
+    name: 'Codeium',
+    url: 'https://codeium.com/',
+    description: 'Fast, free AI code suggestions and completions for individual developers.',
+    category: 'AI_ASSISTANT',
+    icon: 'fa-bolt'
+  },
 
-  // Interactive Learning Platforms
+  // Interactive Coding Labs & Practice Platforms
   {
     id: 'fcc',
     name: 'freeCodeCamp',
     url: 'https://www.freecodecamp.org/',
-    description: 'Comprehensive curriculum for web dev, data science, and security.',
+    description: 'Comprehensive free coding lessons and project-based certifications.',
     category: 'INTERACTIVE_LAB',
     icon: 'fa-fire-flame-curved'
   },
   {
     id: 'codecademy',
-    name: 'Codecademy',
+    name: 'Codecademy (Free Tier)',
     url: 'https://www.codecademy.com/',
-    description: 'Pro-grade interactive lessons with in-browser code feedback.',
+    description: 'Browser-based lessons with an interactive integrated code editor.',
     category: 'INTERACTIVE_LAB',
     icon: 'fa-keyboard'
   },
@@ -83,51 +89,75 @@ export const EXTERNAL_RESOURCES: ExternalResource[] = [
     id: 'sololearn',
     name: 'SoloLearn',
     url: 'https://www.sololearn.com/en/',
-    description: 'Mobile-first hands-on coding courses for 25+ technologies.',
+    description: 'Hands-on courses and exercises with a mobile-friendly integrated editor.',
     category: 'INTERACTIVE_LAB',
     icon: 'fa-mobile-screen-button'
   },
   {
     id: 'codechef',
     name: 'CodeChef Learn',
-    url: 'https://www.codechef.com/',
-    description: 'Competitive programming and data structures mastery.',
+    url: 'https://www.codechef.com/learn',
+    description: 'Free coding lessons focusing on competitive programming and problem solving.',
     category: 'INTERACTIVE_LAB',
     icon: 'fa-hat-wizard'
+  },
+  {
+    id: 'cscircles',
+    name: 'CS Circles',
+    url: 'https://cscircles.cemc.uwaterloo.ca/',
+    description: 'Browser-based Python course with embedded coding challenges and auto-grading.',
+    category: 'INTERACTIVE_LAB',
+    icon: 'fa-circle-nodes'
   },
   {
     id: 'codecombat',
     name: 'CodeCombat',
     url: 'https://codecombat.com/',
-    description: 'Gamified environment for learning core JS/Python logic through play.',
+    description: 'Learn Python and JavaScript through interactive games and challenges.',
     category: 'INTERACTIVE_LAB',
     icon: 'fa-gamepad'
-  },
-
-  // Online Compilers & Sandboxes
-  {
-    id: 'playcode',
-    name: 'PlayCode JS',
-    url: 'https://playcode.io/',
-    description: 'High-performance JavaScript playground with live visualization.',
-    category: 'SANDBOX',
-    icon: 'fa-play'
   },
   {
     id: 'edube',
     name: 'Edube Interactive',
     url: 'https://edube.org/',
-    description: 'Guided sandbox for Python, JS, and C++ certification prep.',
+    description: 'Integrated programming environment with tutorials and structured practice.',
+    category: 'INTERACTIVE_LAB',
+    icon: 'fa-chalkboard-user'
+  },
+
+  // Online Compilers & Sandboxes
+  {
+    id: 'playcode',
+    name: 'PlayCode (JS/Python)',
+    url: 'https://playcode.io/',
+    description: 'Free JS/Python editor with live preview and an integrated AI assistant.',
+    category: 'SANDBOX',
+    icon: 'fa-play'
+  },
+  {
+    id: 'replit',
+    name: 'Replit',
+    url: 'https://replit.com/',
+    description: 'Powerful cloud IDE that runs nearly any language in the browser.',
+    category: 'SANDBOX',
+    icon: 'fa-cloud'
+  },
+  {
+    id: 'jdoodle',
+    name: 'JDoodle',
+    url: 'https://www.jdoodle.com/',
+    description: 'Lightweight online compiler and terminal for 76+ programming languages.',
     category: 'SANDBOX',
     icon: 'fa-terminal'
   },
 
-  // Tutorials & Research
+  // Beginner Tutorials + Interactive Examples
   {
     id: 'learnpython',
     name: 'LearnPython.org',
     url: 'https://www.learnpython.org/',
-    description: 'Interactive tutorials specifically for Python and Data Science.',
+    description: 'Interactive Python tutorials with live code execution for beginners.',
     category: 'TUTORIAL',
     icon: 'fa-brands fa-python'
   },
@@ -135,7 +165,7 @@ export const EXTERNAL_RESOURCES: ExternalResource[] = [
     id: 'arxiv',
     name: 'arXiv Research',
     url: 'https://arxiv.org/abs/1209.2166',
-    description: 'Elite research library for deep learning and AI paper mastery.',
+    description: 'Foundational research papers and scholarly articles for AI/ML mastery.',
     category: 'RESEARCH',
     icon: 'fa-book-open'
   }

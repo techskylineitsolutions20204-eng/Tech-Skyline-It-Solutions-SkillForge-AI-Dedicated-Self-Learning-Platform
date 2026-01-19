@@ -1,11 +1,13 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Initialize the Google GenAI client using the environment variable API_KEY.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getLabScenario = async (path: string, skill: string) => {
+  // Use gemini-3-pro-preview for complex coding tasks.
   const response = await ai.models.generateContent({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-3-pro-preview',
     contents: `Generate a hands-on interactive lab scenario for a student learning ${path} focusing on ${skill}.
     Return it as a JSON object with: 
     title, objective, tasks (array), hints (array).`,
@@ -30,12 +32,13 @@ export const getLabScenario = async (path: string, skill: string) => {
     }
   });
 
-  return JSON.parse(response.text);
+  return JSON.parse(response.text || '{}');
 };
 
 export const getDebugTrace = async (code: string, objective: string) => {
+  // Use gemini-3-pro-preview for advanced reasoning and code simulation.
   const response = await ai.models.generateContent({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-3-pro-preview',
     contents: `Simulate the step-by-step execution of the following code for a learning lab. 
     Objective: "${objective}"
     Code:
@@ -71,12 +74,13 @@ export const getDebugTrace = async (code: string, objective: string) => {
       }
     }
   });
-  return JSON.parse(response.text);
+  return JSON.parse(response.text || '[]');
 };
 
 export const analyzeCode = async (code: string, task: string) => {
+  // Use gemini-3-pro-preview for expert technical analysis.
   const response = await ai.models.generateContent({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-3-pro-preview',
     contents: `Act as a technical mentor. Analyze the following code implementation for the task: "${task}".
     Code:
     \`\`\`
@@ -99,12 +103,13 @@ export const analyzeCode = async (code: string, task: string) => {
       }
     }
   });
-  return JSON.parse(response.text);
+  return JSON.parse(response.text || '{}');
 };
 
 export const getMentorResponse = async (history: { role: 'user' | 'model', parts: { text: string }[] }[], currentMessage: string) => {
+  // Use gemini-3-pro-preview for advanced reasoning in technical mentoring.
   const chat = ai.chats.create({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-3-pro-preview',
     config: {
       systemInstruction: 'You are an expert technical mentor for modern high-paying tech stacks. You provide concise, actionable advice and encourage hands-on practice. If the user asks about Firebase, explain Hosting vs App Hosting based on their needs.',
     },

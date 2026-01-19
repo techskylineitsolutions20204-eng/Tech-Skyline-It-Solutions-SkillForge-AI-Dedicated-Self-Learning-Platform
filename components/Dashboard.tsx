@@ -28,45 +28,47 @@ const Dashboard: React.FC = () => {
         <div className="relative z-10 space-y-6 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-zinc-800/50 border border-zinc-700/50 rounded-full">
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">System Online: v2.5 Enterprise</span>
+            <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">Ecosystem Online: 2026 Edition</span>
           </div>
           <h1 className="text-5xl font-black tracking-tight text-white leading-tight">
             SkillForge <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Resource Hub</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed">
-            Your centralized gateway to the elite tools and platforms defining the 2026 tech landscape. 
+            Your centralized gateway to the elite tools and platforms defining the modern tech landscape. 
             From AI-native code agents to immersive sandboxed environments.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
             <button className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black shadow-xl shadow-blue-600/20 transition-all flex items-center gap-3">
-              Resume Learning Path <i className="fa-solid fa-arrow-right text-xs"></i>
+              Explore Learning Paths <i className="fa-solid fa-arrow-right text-xs"></i>
             </button>
             <button className="px-8 py-3.5 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-100 rounded-2xl font-black transition-all border border-zinc-700 backdrop-blur-sm">
-              View Tooling Guide
+              Quick Tutorials
             </button>
           </div>
         </div>
       </div>
 
-      {/* Stats QuickView */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[
-          { icon: 'fa-check-double', label: 'Modules Mastered', val: '12', sub: '+2 from last session', color: 'emerald' },
-          { icon: 'fa-terminal', label: 'Lab Practice', val: '48', sub: '120 hours total uptime', color: 'blue' },
-          { icon: 'fa-ranking-star', label: 'Talent Score', val: '2,450', sub: 'Top 15% in Distributed Systems', color: 'amber' }
-        ].map((stat, i) => (
-          <div key={i} className="bg-zinc-900/40 border border-zinc-800/50 p-7 rounded-3xl group hover:border-zinc-600 transition-all hover:shadow-xl hover:shadow-black/20">
-            <div className="flex items-center gap-4 mb-5">
-              <div className={`w-12 h-12 bg-${stat.color}-500/10 rounded-2xl flex items-center justify-center text-${stat.color}-500 shadow-inner`}>
-                <i className={`fa-solid ${stat.icon} text-lg`}></i>
-              </div>
-              <h3 className="font-bold text-zinc-300 tracking-tight">{stat.label}</h3>
-            </div>
-            <p className="text-4xl font-black text-white">{stat.val}</p>
-            <p className="text-xs text-zinc-500 mt-2 font-medium">{stat.sub}</p>
+      {/* Strategic Tips Section */}
+      <section className="bg-zinc-900/20 border border-zinc-800/50 p-8 rounded-[2rem] animate-in fade-in duration-700">
+        <h2 className="text-xl font-black text-white mb-6 flex items-center gap-3">
+          <i className="fa-solid fa-lightbulb text-amber-500"></i>
+          Strategic Usage Tips
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="space-y-2">
+            <h4 className="text-sm font-bold text-blue-400 uppercase tracking-widest">For Learning</h4>
+            <p className="text-xs text-zinc-500 leading-relaxed">Combine freeCodeCamp and Codecademy for structured lessons, then use SoloLearn for mobile practice during transit.</p>
           </div>
-        ))}
-      </div>
+          <div className="space-y-2">
+            <h4 className="text-sm font-bold text-emerald-400 uppercase tracking-widest">For Building</h4>
+            <p className="text-xs text-zinc-500 leading-relaxed">Generate core logic with Workik or ZZZ Code, then refine and debug directly in VS Code using Google Code Assist.</p>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-sm font-bold text-purple-400 uppercase tracking-widest">For Experimentation</h4>
+            <p className="text-xs text-zinc-500 leading-relaxed">Spin up a Replit or PlayCode sandbox to test snippets quickly before committing to your main repository.</p>
+          </div>
+        </div>
+      </section>
 
       {/* Categorized Ecosystem Resources */}
       <div className="space-y-16">

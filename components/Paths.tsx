@@ -50,7 +50,8 @@ const Paths: React.FC = () => {
     localStorage.setItem('skillforge_projects', JSON.stringify(next));
   };
 
-  const learningResources = EXTERNAL_RESOURCES.filter(r => r.category === 'LEARNING' || r.category === 'RESEARCH');
+  // Fixed incorrect category comparison from 'LEARNING' to 'TUTORIAL'
+  const learningResources = EXTERNAL_RESOURCES.filter(r => r.category === 'TUTORIAL' || r.category === 'RESEARCH');
 
   return (
     <div className="max-w-7xl mx-auto space-y-12 pb-20">
