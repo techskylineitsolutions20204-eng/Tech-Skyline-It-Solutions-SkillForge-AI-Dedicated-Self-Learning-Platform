@@ -7,9 +7,8 @@ import Internship from './components/Internship';
 import Labs from './components/Labs';
 import FirebaseArchitect from './components/FirebaseArchitect';
 import AIMentor from './components/AIMentor';
-import GoogleAcademy from './components/GoogleAcademy';
+import GlobalAcademy from './components/GlobalAcademy';
 
-// Context for global navigation across components
 interface NavContextType {
   activeTab: string;
   setActiveTab: (tab: string) => void;
@@ -33,8 +32,8 @@ const App: React.FC = () => {
         return <Paths />;
       case 'internship':
         return <Internship />;
-      case 'google-academy':
-        return <GoogleAcademy />;
+      case 'global-academy':
+        return <GlobalAcademy />;
       case 'labs':
         return <Labs />;
       case 'firebase':

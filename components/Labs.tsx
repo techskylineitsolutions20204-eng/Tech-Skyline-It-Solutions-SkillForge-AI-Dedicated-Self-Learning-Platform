@@ -13,21 +13,46 @@ const Labs: React.FC = () => {
   const [activeTool, setActiveTool] = useState<'terminal' | 'debugger' | 'llmOutput'>('terminal');
   const [terminalOutput, setTerminalOutput] = useState<string[]>(['SkillForge Kernel v2.6 initialized...', 'System status: Awaiting deployment request.']);
   const [env, setEnv] = useState<EnvPreset>('fastapi');
-  const [code, setCode] = useState(`from fastapi import FastAPI, Body
+  const [code, setCode] = useState(`from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
+from datetime import datetime, timedelta
 from typing import Optional
 
+# Configuration
+SECRET_KEY = "your-secret-key"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
 app = FastAPI()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-class Student(BaseModel):
-    name: str
-    email: str
-    course: str
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
-@app.post("/students/")
-async def create_student(student: Student = Body(...)):
-    # Simulation: MongoDB insert_one logic
-    return {"status": "created", "data": student}`);
+class User(BaseModel):
+    username: str
+    email: Optional[str] = None
+
+@app.post("/token", response_model=Token)
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    # Simulation: Verify user credentials against DB
+    if form_data.username != "admin" or form_data.password != "secret":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+        )
+    return {"access_token": "mock-jwt-token", "token_type": "bearer"}
+
+@app.get("/users/me", response_model=User)
+async def read_users_me(token: str = Depends(oauth2_scheme)):
+    # Simulation: Decode JWT and fetch user
+    return {"username": "admin", "email": "admin@example.com"}
+
+@app.get("/protected-resource")
+async def get_protected(token: str = Depends(oauth2_scheme)):
+    return {"message": "Access granted to secure data"}`);
     
   const [feedback, setFeedback] = useState<LabFeedback | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -137,8 +162,9 @@ async def create_student(student: Student = Body(...)):
       ...prev, 
       `$ ${env === 'fastapi' ? 'uvicorn main:app' : 'node main.js'}`, 
       '[STDOUT] Execution initialized...',
+      '[STDOUT] Log: Auth Middlewares active.',
       '[STDOUT] Log: Application startup complete.',
-      '[HINT] Use "Trace" to inspect Pydantic validation steps.'
+      '[HINT] Use "Trace" to inspect Dependency Injection steps.'
     ]);
     setActiveTool('terminal');
   };
