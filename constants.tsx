@@ -27,6 +27,7 @@ export const EXTERNAL_RESOURCES: ExternalResource[] = [
   { id: 'cs-circles', name: 'CS Circles', url: 'https://cs.courses/cs-circles/', description: 'Excellent Python problem-solving and logic platform.', category: 'TUTORIAL', icon: 'fa-circle-dot' },
   { id: 'codecademy-git', name: 'Codecademy Git', url: 'https://www.codecademy.com/learn/learn-git', description: 'Mastering version control with Git and GitHub.', category: 'TUTORIAL', icon: 'fa-code-branch' },
   { id: 'codecademy-catalog', name: 'Codecademy Catalog', url: 'https://www.codecademy.com/catalog', description: 'Extensive library of interactive tech courses.', category: 'TUTORIAL', icon: 'fa-book-open' },
+  { id: 'codecademy-python3', name: 'Codecademy Python 3', url: 'https://www.codecademy.com/learn/paths/python-3', description: 'Professional Python 3 learning path.', category: 'TUTORIAL', icon: 'fa-brands fa-python' },
   
   // Cyber & Sec
   { id: 'codecademy-cyber', name: 'Codecademy Cybersecurity', url: 'https://www.codecademy.com/learn/paths/cybersecurity', description: 'Structured path for modern cybersecurity fundamentals.', category: 'SEC_LAB', icon: 'fa-user-secret' },

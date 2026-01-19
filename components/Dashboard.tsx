@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { LEARNING_PATHS } from '../constants';
+import { useNav } from '../App';
 
 const Dashboard: React.FC = () => {
+  const { setActiveTab } = useNav();
+
   return (
     <div className="animate-in fade-in duration-1000">
       {/* Hero Section */}
@@ -27,10 +30,16 @@ const Dashboard: React.FC = () => {
           </div>
           
           <div className="flex flex-wrap gap-5">
-            <button className="px-10 py-5 bg-white text-black rounded-2xl font-black text-lg transition-all hover:scale-[1.02] shadow-2xl shadow-white/5 active:scale-95">
+            <button 
+              onClick={() => setActiveTab('internship')}
+              className="px-10 py-5 bg-white text-black rounded-2xl font-black text-lg transition-all hover:scale-[1.02] shadow-2xl shadow-white/5 active:scale-95"
+            >
               Launch Industrial Syllabus
             </button>
-            <button className="px-10 py-5 bg-zinc-900 border border-zinc-800 text-white rounded-2xl font-black text-lg transition-all hover:bg-zinc-800 border-zinc-700">
+            <button 
+              onClick={() => setActiveTab('labs')}
+              className="px-10 py-5 bg-zinc-900 border border-zinc-800 text-white rounded-2xl font-black text-lg transition-all hover:bg-zinc-800 border-zinc-700"
+            >
               Explore Lab Ecosystems
             </button>
           </div>
@@ -60,14 +69,21 @@ const Dashboard: React.FC = () => {
                 <h2 className="text-3xl font-black text-white">Advanced Learning Paths</h2>
                 <p className="text-zinc-500 font-medium">Curated competency targets for modern high-performance roles.</p>
              </div>
-             <button className="text-[10px] font-black text-blue-500 uppercase tracking-widest flex items-center gap-2 hover:text-blue-400 transition-colors">
+             <button 
+              onClick={() => setActiveTab('paths')}
+              className="text-[10px] font-black text-blue-500 uppercase tracking-widest flex items-center gap-2 hover:text-blue-400 transition-colors"
+             >
                 View All Paths <i className="fa-solid fa-arrow-right"></i>
              </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {LEARNING_PATHS.slice(0, 3).map((path) => (
-              <div key={path.id} className="p-10 bg-zinc-900 border border-zinc-800 rounded-[3rem] space-y-8 hover:border-blue-500/30 transition-all group relative overflow-hidden">
+              <div 
+                key={path.id} 
+                onClick={() => setActiveTab('paths')}
+                className="p-10 bg-zinc-900 border border-zinc-800 rounded-[3rem] space-y-8 hover:border-blue-500/30 transition-all group cursor-pointer relative overflow-hidden"
+              >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                 
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-zinc-800 mb-6 border border-zinc-700 shadow-xl group-hover:scale-110 transition-transform ${path.color}`}>
@@ -127,6 +143,12 @@ const Dashboard: React.FC = () => {
                   </li>
                 ))}
               </ul>
+              <button 
+                onClick={() => setActiveTab('labs')}
+                className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-xl shadow-blue-600/20"
+              >
+                Launch Active Simulator
+              </button>
             </div>
             
             <div className="relative">

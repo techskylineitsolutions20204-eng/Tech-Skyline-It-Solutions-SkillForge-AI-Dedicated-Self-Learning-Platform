@@ -2,12 +2,27 @@
 import React, { useState } from 'react';
 import { INTERNSHIP_TRACKS, EXTERNAL_RESOURCES } from '../constants';
 import { InternshipTrack, CurriculumTerm } from '../types';
+import { useNav } from '../App';
 
 const Internship: React.FC = () => {
   const [activeTrack, setActiveTrack] = useState<InternshipTrack | null>(null);
   const [activeTermIndex, setActiveTermIndex] = useState(0);
+  const { setActiveTab } = useNav();
 
   const activeTerm = activeTrack?.curriculum?.[activeTermIndex];
+
+  const handleOpenDocs = () => {
+    // Open a primary resource based on the active term/track
+    if (activeTerm?.title.toLowerCase().includes('python')) {
+      window.open('https://www.codecademy.com/learn/paths/python-3', '_blank');
+    } else if (activeTerm?.title.toLowerCase().includes('cloud') || activeTerm?.title.toLowerCase().includes('deployment')) {
+      window.open('https://skillbuilder.aws/', '_blank');
+    } else if (activeTerm?.title.toLowerCase().includes('data') || activeTerm?.title.toLowerCase().includes('bi')) {
+      window.open('https://learn.microsoft.com/en-us/training/powerplatform/power-bi', '_blank');
+    } else {
+      window.open('https://www.codecademy.com/catalog', '_blank');
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto space-y-16 py-12 px-8 pb-32">
@@ -23,7 +38,7 @@ const Internship: React.FC = () => {
         </div>
         <div className="flex gap-4">
           <button className="px-6 py-2.5 bg-zinc-800 border border-zinc-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-zinc-700 transition-all">Resume Learning</button>
-          <button className="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20">Enroll Now</button>
+          <button onClick={() => setActiveTab('paths')} className="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20">Enroll Now</button>
         </div>
       </div>
 
@@ -142,10 +157,10 @@ const Internship: React.FC = () => {
                         </div>
                       </div>
                       <div className="pt-8 space-y-4">
-                         <button className="w-full py-4.5 bg-blue-600 hover:bg-blue-500 text-white rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest shadow-2xl shadow-blue-600/20 transition-all flex items-center justify-center gap-3">
+                         <button onClick={() => setActiveTab('labs')} className="w-full py-4.5 bg-blue-600 hover:bg-blue-500 text-white rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest shadow-2xl shadow-blue-600/20 transition-all flex items-center justify-center gap-3">
                            <i className="fa-solid fa-flask"></i> Launch Practice Lab
                          </button>
-                         <button className="w-full py-4 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-300 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest transition-all">
+                         <button onClick={handleOpenDocs} className="w-full py-4 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-300 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest transition-all">
                            Self Learning Docs
                          </button>
                       </div>
@@ -177,7 +192,7 @@ const Internship: React.FC = () => {
                           ))}
                         </ul>
                         <div className="pt-6">
-                           <button className="w-full py-4 bg-zinc-950/50 border border-zinc-800 hover:bg-blue-600 hover:border-blue-500 hover:text-white rounded-2xl text-[10px] font-black uppercase tracking-widest text-zinc-600 transition-all flex items-center justify-center gap-3 shadow-inner">
+                           <button onClick={() => setActiveTab('labs')} className="w-full py-4 bg-zinc-950/50 border border-zinc-800 hover:bg-blue-600 hover:border-blue-500 hover:text-white rounded-2xl text-[10px] font-black uppercase tracking-widest text-zinc-600 transition-all flex items-center justify-center gap-3 shadow-inner">
                               Practice Module <i className="fa-solid fa-terminal text-[8px]"></i>
                            </button>
                         </div>
