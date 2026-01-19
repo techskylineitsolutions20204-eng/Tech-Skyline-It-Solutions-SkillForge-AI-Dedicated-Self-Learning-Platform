@@ -13,7 +13,9 @@ export type TechPath =
   | 'DEVOPS'
   | 'RPA'
   | 'QA'
-  | 'FOUNDATION';
+  | 'FOUNDATION'
+  | 'AI_GOVERNANCE'
+  | 'BACKEND_API';
 
 export interface Certification {
   level: 'Foundational' | 'Intermediate' | 'Advanced';
@@ -27,6 +29,7 @@ export interface RoadmapStep {
   week?: string;
   effort?: string;
   skills?: string;
+  studyGuide?: string; // Content for the detailed tutorial
 }
 
 export interface CurriculumTopic {
